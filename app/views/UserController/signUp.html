@@ -1,0 +1,36 @@
+#{extends 'main.html' /}
+#{set title:messages.get('title.user.sign.up') /}
+
+<fieldset>
+    <legend>&{'title.user.sign.up'}</legend>
+
+    <form class="form-horizontal" action="@{UserController.saveUser()}" method="POST">
+        <input name="returnUrl" type="hidden" value="${returnUrl}">
+
+        <div class="control-group#{ifError 'login'} error#{/ifError}">
+            <label class="control-label required" for="login">&{'user.login'}</label>
+            <div class="controls">
+                <input id="login" name="login" type="text" value="${flash.login}" placeholder="&{'user.login'}">
+                #{ifError 'login'}
+                    <span class="help-inline">#{error 'login' /}</span>
+                #{/ifError}
+            </div>
+        </div>
+
+        <div class="control-group#{ifError 'password'} error#{/ifError}">
+            <label class="control-label required" for="password">&{'user.password'}</label>
+            <div class="controls">
+                <input id="password" name="password" type="password" value="${flash.password}" placeholder="&{'user.password'}">
+                #{ifError 'password'}
+                    <span class="help-inline">#{error 'password' /}</span>
+                #{/ifError}
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                <button class="btn btn-primary" type="submit">&{'button.create'}</button>
+            </div>
+        </div>
+    </form>
+</fieldset>

@@ -12,7 +12,7 @@
             <div class="controls">
                 <input id="title" class="input-xxlarge" name="title" type="text" value="${flash.title}" placeholder="&{'knowledge.title'}">
                 #{ifError 'title'}
-                    <span class="help-inline">&{'error.field.required'}</span>
+                    <span class="help-inline">#{error 'title' /}</span>
                 #{/ifError}
             </div>
         </div>
@@ -22,7 +22,7 @@
             <div class="controls">
                 <textarea id="description" class="input-xxlarge" name="description" placeholder="&{'knowledge.description'}">${flash.description}</textarea>
                 #{ifError 'description'}
-                    <span class="help-inline">&{'error.field.required'}</span>
+                    <span class="help-inline">#{error 'description' /}</span>
                 #{/ifError}
             </div>
         </div>

@@ -23,9 +23,13 @@ public class KnowledgeController extends SuperController {
 		render();
 	}
 
-	public static void saveKnowledge(@Required Long userId, @Required String title, @Required String description) {
+	public static void saveKnowledge(@Required Long userId, String title, String description) {
 		/* Parameters validation */
+		validation.required(title).message("error.field.required");
+		validation.required(description).message("error.field.required");
+
 		if (validation.hasErrors()) {
+			flash.keep();
 			params.flash();
 			validation.keep();
 

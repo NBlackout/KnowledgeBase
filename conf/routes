@@ -5,6 +5,9 @@
 # Home page
 GET     /                                       Application.index
 
+# Users
+GET     /users/user                             UserController.signUp
+
 # Knowledges
 GET     /knowledges                             KnowledgeController.showKnowledges
 GET     /knowledges/knowledge                   KnowledgeController.createKnowledge

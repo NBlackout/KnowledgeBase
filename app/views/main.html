@@ -65,7 +65,10 @@
 
                                 <input class="input-medium" name="login" type="text" placeholder="&{'user.login'}">
                                 <input class="input-medium" name="password" type="password" placeholder="&{'user.password'}">
-                                <button class="btn btn-primary" type="submit">&{'button.log.in'}</button>
+                                <span class="controls">
+                                    <button class="btn btn-primary" type="submit">&{'button.log.in'}</button>
+                                    <a class="btn btn-primary" href="@{UserController.signUp()}">&{'button.sign.up'}</a>
+                                </span>
                             </form>
                         #{/else}
                     </div>
