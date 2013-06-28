@@ -18,10 +18,7 @@ public class UserController extends SuperController {
 		}
 
 		if (validation.hasErrors()) {
-			flash.keep();
-			params.flash();
-			validation.keep();
-
+			keepValidation();
 			signUp();
 		}
 

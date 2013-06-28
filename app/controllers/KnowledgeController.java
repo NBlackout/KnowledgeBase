@@ -29,10 +29,7 @@ public class KnowledgeController extends SuperController {
 		validation.required(description).message("error.field.required");
 
 		if (validation.hasErrors()) {
-			flash.keep();
-			params.flash();
-			validation.keep();
-
+			keepValidation();
 			createKnowledge();
 		}
 

@@ -4,16 +4,17 @@ import models.User;
 import play.data.validation.Required;
 import play.i18n.Lang;
 import play.mvc.Controller;
+import play.mvc.Router;
 
 public class SuperController extends Controller {
 
-	public static void setLang(String lang, String redirect) {
+	public static void setLang(String returnUrl, String lang) {
 		Lang.change(lang);
 
-		redirect(redirect);
+		redirectSafely(returnUrl);
 	}
 
-	public static void logIn(@Required String returnUrl, String login, String password) {
+	public static void logIn(String returnUrl, String login, String password) {
 		/* Parameters validation */
 		validation.required(login).message("error.field.required");
 		validation.required(password).message("error.field.required");
@@ -24,18 +25,15 @@ public class SuperController extends Controller {
 		}
 
 		if (validation.hasErrors()) {
-			flash.keep();
-			params.flash();
-			validation.keep();
-
-			redirect(returnUrl);
+			keepValidation();
+			redirectSafely(returnUrl);
 		}
 
 		/* Add user to session */
 		session.put("user.id", user.id);
 		session.put("user.login", user.login);
 
-		redirect(returnUrl);
+		redirectSafely(returnUrl);
 	}
 
 	public static void logOut(@Required String returnUrl) {
@@ -43,6 +41,16 @@ public class SuperController extends Controller {
 		session.remove("user.id");
 		session.remove("user.login");
 
-		redirect(returnUrl);
+		redirectSafely(returnUrl);
+	}
+
+	protected static void keepValidation() {
+		flash.keep();
+		params.flash();
+		validation.keep();
+	}
+
+	protected static void redirectSafely(String returnUrl) {
+		redirect(returnUrl != null ? returnUrl : Router.getFullUrl("Application.index"));
 	}
 }
