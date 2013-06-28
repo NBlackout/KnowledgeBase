@@ -5,6 +5,10 @@
 # Home page
 GET     /                                       Application.index
 
+# Knowledges
+GET     /knowledges                             KnowledgeController.showKnowledges
+GET     /knowledges/knowledge                   KnowledgeController.createKnowledge
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

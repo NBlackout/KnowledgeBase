@@ -4,12 +4,27 @@ application.welcome=Bienvenue %s
 
 # Titles
 title.home=Accueil
+title.knowledges.show=Affichage des connaissances
+title.knowledge.create=Ajout d'une connaissance
+
+# Navbar
+navbar.knowledges=Connaissances
+navbar.knowledges.show=Afficher les connaissances
+navbar.knowledge.create=Ajouter une connaissance
 
 # Buttons
 button.log.in=Se connecter
 button.log.out=Se déconnecter
+button.create=Créer
+
+# Knowledges
+knowledge.title=Titre
+knowledge.description=Description
 
 # Users
 user.login=Identifiant
 user.password=Mot de passe
 user.not.found=Utilisateur non trouvé
+
+# Errors
+error.field.required=Ce champs est requis

@@ -39,6 +39,18 @@
                     <a class="brand" href="@{Application.index()}">&{'application.name'}</a>
 
                     <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">&{'navbar.knowledges'}&nbsp;<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown"><a href="@{KnowledgeController.showKnowledges()}">&{'navbar.knowledges.show'}</a></li>
+                                    #{if session.get('user.id')}
+                                        <li class="dropdown"><a href="@{KnowledgeController.createKnowledge()}">&{'navbar.knowledge.create'}</a></li>
+                                    #{/if}
+                                </ul>
+                            </li>
+                        </ul>
+
                         #{if session.get('user.id')}
                             <form class="navbar-form pull-right" action="@{SuperController.logOut()}" method="POST">
                                 <input name="returnUrl" type="hidden" value="${request.url}">

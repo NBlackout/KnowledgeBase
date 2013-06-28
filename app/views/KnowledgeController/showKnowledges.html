@@ -1,0 +1,12 @@
+#{extends 'main.html' /}
+#{set title:messages.get('title.knowledges.show') /}
+
+<fieldset>
+    <legend>&{'title.knowledges.show'}</legend>
+
+    <ul>
+        #{list items:knowledges, as:'knowledge'}
+            <li>${knowledge.title}</li>
+        #{/list}
+    </ul>
+</fieldset>
