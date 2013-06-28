@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+#{set 'styles'}
+    #{stylesheet 'bootstrap.css', media:'screen' /}
+    #{stylesheet 'bootstrap-responsive.css', media:'screen' /}
+#{/set}
+
+#{set 'scripts'}
+    #{script 'jquery-2.0.2.js', charset:'UTF-8' /}
+    #{script 'bootstrap.js', charset:'UTF-8' /}
+#{/set}
+
+<html>
+    <head>
+        <title>#{get 'title' /}</title>
+        <meta charset="UTF-8">
+        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+        #{get 'styles' /}
+        #{get 'scripts' /}
+    </head>
+
+    <body>
+        #{doLayout /}
+    </body>
+</html>

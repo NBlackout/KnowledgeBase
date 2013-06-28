@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Not found</title>
+        <meta charset="UTF-8">
+        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+    </head>
+
+    <body>
+        #{if play.mode.name() == 'DEV'}
+            #{404 result /}
+        #{/if}
+        #{else}
+            <h1>Not found</h1>
+            <p>${result.message}</p>
+        #{/else}
+    </body>
+</html>
