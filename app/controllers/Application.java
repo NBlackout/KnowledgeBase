@@ -1,8 +1,6 @@
 package controllers;
 
-import play.mvc.Controller;
-
-public class Application extends Controller {
+public class Application extends SuperController {
 
 	public static void index() {
 		render();

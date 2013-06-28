@@ -1,0 +1,38 @@
+/* Fix for fieldset legend */
+fieldset {
+    padding-top: 20px;
+}
+
+/* Navbar */
+.navbar-fixed-top,.navbar-fixed-bottom {
+    position: static;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.navbar .locales li {
+    float: left;
+}
+
+.navbar .locales li a {
+    padding: 10px 5px;
+}
+
+/* Flag icons */
+[class^="flag-"] {
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 16px;
+    vertical-align: text-top;
+    width: 22px;
+}
+
+.flag-fr {
+    background-image: url("../images/flag-fr.png");
+}
+
+.flag-en {
+    background-image: url("../images/flag-en.png");
+}
