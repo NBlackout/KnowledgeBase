@@ -20,6 +20,12 @@ fieldset {
     padding: 10px 5px;
 }
 
+.navbar .welcome {
+    display: inline-block;
+    margin-top: 5px;
+    vertical-align: middle;
+}
+
 /* Flag icons */
 [class^="flag-"] {
     background-repeat: no-repeat;

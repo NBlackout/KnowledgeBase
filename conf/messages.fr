@@ -1,5 +1,15 @@
 # Application
 application.name=KnowledgeBase
+application.welcome=Bienvenue %s
 
 # Titles
 title.home=Accueil
+
+# Buttons
+button.log.in=Se connecter
+button.log.out=Se déconnecter
+
+# Users
+user.login=Identifiant
+user.password=Mot de passe
+user.not.found=Utilisateur non trouvé
