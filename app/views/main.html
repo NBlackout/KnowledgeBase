@@ -32,7 +32,7 @@
 
                     <ul class="nav locales">
                         #{list items:play.configuration['application.langs'].split(','), as:'locale'}
-                            <li><a href="@{SuperController.setLang(locale, request.url)}"><i class="flag-${locale}"></i></a></li>
+                            <li><a href="@{SuperController.setLang(request.url, locale)}"><i class="flag-${locale}"></i></a></li>
                         #{/list}
                     </ul>
 

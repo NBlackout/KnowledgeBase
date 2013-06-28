@@ -8,8 +8,8 @@ import play.mvc.Router;
 
 public class SuperController extends Controller {
 
-	public static void setLang(String returnUrl, String lang) {
-		Lang.change(lang);
+	public static void setLang(String returnUrl, String locale) {
+		Lang.change(locale);
 
 		redirectSafely(returnUrl);
 	}
