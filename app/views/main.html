@@ -54,12 +54,18 @@
                         </ul>
 
                         #{if session.get('user.id')}
-                            <form class="navbar-form pull-right" action="@{SuperController.logOut()}" method="POST">
-                                <input name="returnUrl" type="hidden" value="${request.url}">
+                            <ul class="nav pull-right">
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">${session.get('user.login')}&nbsp;<b class="caret"></b></a>
+                                    <div class="dropdown-menu user-dropdown-menu">
+                                        <form class="navbar-form" action="@{SuperController.logOut()}" method="POST">
+                                            <input name="returnUrl" type="hidden" value="${request.url}">
 
-                                <span class="welcome">&{'application.welcome', session.get('user.login')}</span>
-                                <button class="btn btn-primary" type="submit">&{'button.log.out'}</button>
-                            </form>
+                                            <button class="btn btn-link" type="submit">&{'button.log.out'}</button>
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
                         #{/if}
                         #{else}
                             <form class="navbar-form pull-right" action="@{SuperController.logIn()}" method="POST">

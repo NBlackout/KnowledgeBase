@@ -20,14 +20,13 @@ fieldset {
     padding: 10px 5px;
 }
 
-.navbar .sign-up-form {
-	margin-left: 5px;
+.navbar .user-dropdown-menu {
+    min-width: 0;
 }
 
-.navbar .welcome {
-    display: inline-block;
-    margin-top: 5px;
-    vertical-align: middle;
+.navbar .user-dropdown-menu .btn {
+    float: right;
+    margin-right: 5px;
 }
 
 /* Flag icons */
