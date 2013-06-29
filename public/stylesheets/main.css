@@ -4,10 +4,6 @@ fieldset {
 }
 
 /* Navbar */
-.navbar-fixed-top,.navbar-fixed-bottom {
-    position: static;
-}
-
 .navbar {
     margin-bottom: 20px;
 }
