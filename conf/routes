@@ -6,7 +6,7 @@
 GET     /                                       Application.index
 
 # Users
-GET     /users/user                             UserController.signUp
+GET     /users/signUp                           UserController.signUp
 
 # Knowledges
 GET     /knowledges                             KnowledgeController.showKnowledges

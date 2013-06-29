@@ -5,6 +5,10 @@ import models.User;
 public class UserController extends SuperController {
 
 	public static void signUp() {
+		if (session.contains("user.id")) {
+			Application.index();
+		}
+
 		render();
 	}
 
