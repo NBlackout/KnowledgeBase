@@ -23,7 +23,6 @@ button.create=Create
 button.edit=Edit
 button.save=Save
 button.back=Back
-button.cancel=Cancel
 
 # Knowledges
 knowledge.title=Title
