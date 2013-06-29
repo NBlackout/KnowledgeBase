@@ -27,6 +27,7 @@ button.back=Back
 # Knowledges
 knowledge.title=Title
 knowledge.description=Description
+knowledge.info=Added by %s the %s
 
 # Users
 user.login=Login

@@ -5,8 +5,8 @@
     <legend>&{'title.knowledge.show'}</legend>
 
     <div class="knowledge span7 offset1">
-        <span class="knowledge-user-login">@${knowledge.user.login}</span>
-        <span class="knowledge-title">${knowledge.title}</span>
+        <div class="knowledge-title">${knowledge.title}</div>
+        <div class="knowledge-info">&{'knowledge.info', knowledge.user.login, knowledge.createdDate.format()}</div>
 
         <div class="knowledge-description well">${knowledge.description.raw()}</div>
 
