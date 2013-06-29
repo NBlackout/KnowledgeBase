@@ -10,8 +10,9 @@ GET     /users/user                             UserController.signUp
 
 # Knowledges
 GET     /knowledges                             KnowledgeController.showKnowledges
-GET     /knowledges/knowledge/{knowledgeId}     KnowledgeController.showKnowledge
-GET     /knowledges/knowledge                   KnowledgeController.createKnowledge
+GET     /knowledges/create                      KnowledgeController.createKnowledge
+GET     /knowledges/show/{knowledgeId}          KnowledgeController.showKnowledge
+GET     /knowledges/edit/{knowledgeId}          KnowledgeController.editKnowledge
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

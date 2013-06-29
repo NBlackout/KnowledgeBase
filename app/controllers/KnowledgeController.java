@@ -29,7 +29,20 @@ public class KnowledgeController extends SuperController {
 		render();
 	}
 
-	public static void saveKnowledge(@Required Long userId, String title, String description) {
+	public static void editKnowledge(Long knowledgeId) {
+		if (!session.contains("user.id")) {
+			Application.index();
+		}
+
+		Knowledge knowledge = Knowledge.findById(knowledgeId);
+		if (knowledge.user.id != Long.parseLong(session.get("user.id"))) {
+			Application.index();
+		}
+
+		render(knowledge);
+	}
+
+	public static void saveKnowledge(Long knowledgeId, @Required Long userId, String title, String description) {
 		/* Parameters validation */
 		validation.required(title).message("error.field.required");
 		validation.required(description).message("error.field.required");
@@ -40,13 +53,13 @@ public class KnowledgeController extends SuperController {
 		}
 
 		/* Knowledge creation */
-		Knowledge knowledge = new Knowledge();
+		Knowledge knowledge = (knowledgeId != null) ? Knowledge.<Knowledge> findById(knowledgeId) : new Knowledge();
 		knowledge.user = User.findById(userId);
 		knowledge.title = title;
 		knowledge.description = description;
 		knowledge.createdDate = Calendar.getInstance().getTime();
 		knowledge.save();
 
-		showKnowledges();
+		showKnowledge(knowledge.id);
 	}
 }

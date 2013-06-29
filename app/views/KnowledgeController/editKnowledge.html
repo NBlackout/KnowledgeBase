@@ -1,0 +1,37 @@
+#{extends 'main.html' /}
+#{set title:messages.get('title.knowledge.edit') /}
+
+<fieldset>
+    <legend>&{'title.knowledge.edit'}</legend>
+
+    <form class="form-horizontal" action="@{KnowledgeController.saveKnowledge()}" method="POST">
+        <input name="knowledgeId" type="hidden" value="${knowledge.id}">
+        <input name="userId" type="hidden" value="${session.get('user.id')}">
+
+        <div class="control-group#{ifError 'title'} error#{/ifError}">
+            <label class="control-label required" for="title">&{'knowledge.title'}</label>
+            <div class="controls">
+                <input id="title" class="input-xxlarge" name="title" type="text" value="${knowledge.title}" placeholder="&{'knowledge.title'}">
+                #{ifError 'title'}
+                    <span class="help-inline">#{error 'title' /}</span>
+                #{/ifError}
+            </div>
+        </div>
+
+        <div class="control-group#{ifError 'description'} error#{/ifError}">
+            <label class="control-label required" for="description">&{'knowledge.description'}</label>
+            <div class="controls">
+                <textarea id="description" class="input-xxlarge" name="description" placeholder="&{'knowledge.description'}">${knowledge.description}</textarea>
+                #{ifError 'description'}
+                    <span class="help-inline">#{error 'description' /}</span>
+                #{/ifError}
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                <button class="btn btn-primary" type="submit">&{'button.save'}</button>
+            </div>
+        </div>
+    </form>
+</fieldset>

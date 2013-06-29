@@ -8,6 +8,7 @@ title.user.sign.up=Inscription
 title.knowledges.show=Affichage des connaissances
 title.knowledge.show=Affichage d'une connaissance
 title.knowledge.create=Ajout d'une connaissance
+title.knowledge.edit=Modification d'une connaissance
 
 # Navbar
 navbar.knowledges=Connaissances
@@ -19,6 +20,8 @@ button.log.in=Connexion
 button.log.out=Déconnexion
 button.sign.up=Inscription
 button.create=Créer
+button.edit=Modifier
+button.save=Enregistrer
 
 # Knowledges
 knowledge.title=Titre

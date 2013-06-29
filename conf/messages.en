@@ -8,6 +8,7 @@ title.user.sign.up=Signing up
 title.knowledges.show=Displaying knowledges
 title.knowledge.show=Displaying knowledge
 title.knowledge.create=Adding a knowledge
+title.knowledge.edit=Editing a knowledge
 
 # Navbar
 navbar.knowledges=Knowledges
@@ -19,6 +20,8 @@ button.log.in=Log in
 button.log.out=Log out
 button.sign.up=Sign up
 button.create=Create
+button.edit=Edit
+button.save=Save
 
 # Knowledges
 knowledge.title=Title
