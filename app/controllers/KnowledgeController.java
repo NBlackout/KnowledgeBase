@@ -10,19 +10,6 @@ import play.data.validation.Required;
 
 public class KnowledgeController extends SuperController {
 
-	public static void showKnowledges() {
-		List<Knowledge> knowledges = Knowledge.findAll();
-
-		render(knowledges);
-	}
-
-	public static void showKnowledge(Long knowledgeId) {
-		Knowledge knowledge = Knowledge.findById(knowledgeId);
-		List<Comment> comments = Comment.find("byKnowledge", knowledge).fetch();
-
-		render(knowledge, comments);
-	}
-
 	public static void createKnowledge() {
 		if (!session.contains("user.id")) {
 			Application.index();
@@ -42,6 +29,25 @@ public class KnowledgeController extends SuperController {
 		}
 
 		render(knowledge);
+	}
+
+	public static void saveComment(Long knowledgeId, @Required Long userId, String content) {
+		validation.required(content).message("error.field.required");
+
+		if (validation.hasErrors()) {
+			keepValidation();
+			showKnowledge(knowledgeId);
+		}
+
+		/* Comment creation */
+		Comment comment = new Comment();
+		comment.user = User.findById(userId);
+		comment.knowledge = Knowledge.findById(knowledgeId);
+		comment.content = content;
+		comment.createdDate = Calendar.getInstance().getTime();
+		comment.save();
+
+		showKnowledge(knowledgeId);
 	}
 
 	public static void saveKnowledge(Long knowledgeId, @Required Long userId, String title, String description) {
@@ -65,22 +71,16 @@ public class KnowledgeController extends SuperController {
 		showKnowledge(knowledge.id);
 	}
 
-	public static void saveComment(Long knowledgeId, @Required Long userId, String content) {
-		validation.required(content).message("error.field.required");
+	public static void showKnowledge(Long knowledgeId) {
+		Knowledge knowledge = Knowledge.findById(knowledgeId);
+		List<Comment> comments = Comment.find("byKnowledge", knowledge).fetch();
 
-		if (validation.hasErrors()) {
-			keepValidation();
-			showKnowledge(knowledgeId);
-		}
+		render(knowledge, comments);
+	}
 
-		/* Knowledge creation */
-		Comment comment = new Comment();
-		comment.user = User.findById(userId);
-		comment.knowledge = Knowledge.findById(knowledgeId);
-		comment.content = content;
-		comment.createdDate = Calendar.getInstance().getTime();
-		comment.save();
+	public static void showKnowledges() {
+		List<Knowledge> knowledges = Knowledge.findAll();
 
-		showKnowledge(knowledgeId);
+		render(knowledges);
 	}
 }

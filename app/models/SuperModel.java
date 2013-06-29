@@ -10,6 +10,8 @@ import play.db.jpa.GenericModel;
 @MappedSuperclass
 public class SuperModel extends GenericModel {
 
+	private static final long serialVersionUID = -8340965013288317431L;
+
 	@Id
 	@GeneratedValue
 	@Column(name = "id")

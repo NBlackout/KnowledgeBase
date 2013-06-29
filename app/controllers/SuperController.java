@@ -8,12 +8,6 @@ import play.mvc.Router;
 
 public class SuperController extends Controller {
 
-	public static void setLang(String returnUrl, String locale) {
-		Lang.change(locale);
-
-		redirectSafely(returnUrl);
-	}
-
 	public static void logIn(String returnUrl, String login, String password) {
 		/* Parameters validation */
 		validation.required(login).message("error.field.required");
@@ -40,6 +34,12 @@ public class SuperController extends Controller {
 		/* Remove user from session */
 		session.remove("user.id");
 		session.remove("user.login");
+
+		redirectSafely(returnUrl);
+	}
+
+	public static void setLang(String returnUrl, String locale) {
+		Lang.change(locale);
 
 		redirectSafely(returnUrl);
 	}

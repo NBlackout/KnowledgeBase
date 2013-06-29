@@ -4,14 +4,6 @@ import models.User;
 
 public class UserController extends SuperController {
 
-	public static void signUp() {
-		if (session.contains("user.id")) {
-			Application.index();
-		}
-
-		render();
-	}
-
 	public static void saveUser(String login, String password) {
 		/* Parameters validation */
 		validation.required(login).message("error.field.required");
@@ -37,5 +29,13 @@ public class UserController extends SuperController {
 		session.put("user.login", user.login);
 
 		Application.index();
+	}
+
+	public static void signUp() {
+		if (session.contains("user.id")) {
+			Application.index();
+		}
+
+		render();
 	}
 }
