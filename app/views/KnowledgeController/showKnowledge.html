@@ -5,19 +5,16 @@
     <legend>&{'title.knowledge.show'}</legend>
 
     <div class="knowledge span7 offset1">
+        <div class="knowledge-actions pull-right">
+            #{if session.get('user.id') && knowledge.user.id == Long.parseLong(session.get('user.id'))}
+                <a class="btn btn-primary" href="@{KnowledgeController.editKnowledge(knowledge.id)}">&{'button.edit'}</a>
+            #{/if}
+            #{backButton /}
+        </div>
+
         <div class="knowledge-title">${knowledge.title}</div>
         <div class="knowledge-info">&{'knowledge.info', knowledge.user.login, knowledge.createdDate.format()}</div>
-
         <div class="knowledge-description well">${knowledge.description.raw()}</div>
-
-        <div class="control-group">
-            <div class="controls">
-                #{if session.get('user.id') && knowledge.user.id == Long.parseLong(session.get('user.id'))}
-                    <a class="btn btn-primary" href="@{KnowledgeController.editKnowledge(knowledge.id)}">&{'button.edit'}</a>
-                #{/if}
-                #{backButton /}
-            </div>
-        </div>
 
         <div class="knowledge-comments">
             #{list items:comments, as:'comment'}
@@ -38,10 +35,8 @@
 
                     <textarea class="span7" name="content" placeholder="&{'knowledge.comment'}"></textarea>
 
-                    <div class="control-group">
-                        <div class="controls">
-                            <button class="btn btn-primary" type="submit">&{'button.comment.add'}</button>
-                        </div>
+                    <div class="pull-right">
+                        <button class="btn btn-primary" type="submit">&{'button.comment.add'}</button>
                     </div>
                 </form>
             </div>
