@@ -3,6 +3,10 @@ fieldset {
     padding-top: 20px;
 }
 
+textarea {
+    height: 200px;
+}
+
 /* Navbar */
 .navbar {
     margin-bottom: 20px;
