@@ -3,8 +3,13 @@ fieldset {
     padding-top: 20px;
 }
 
-textarea {
+/* Text areas */
+textarea[name="description"] {
     height: 200px;
+}
+
+textarea[name="content"] {
+    height: 80px;
 }
 
 /* Navbar */
@@ -61,4 +66,22 @@ textarea {
 
 .knowledge .knowledge-description {
     margin-top: 20px;
+}
+
+.knowledge .knowledge-comments {
+    margin-top: 30px;
+}
+
+.knowledge .knowledge-comments .knowledge-comment {
+    border-top: 1px solid #AAAAAA;
+    margin-bottom: 20px;
+}
+
+.knowledge .knowledge-comments .knowledge-comment-info {
+    color: #888888;
+    font-size: 0.8em;
+}
+
+.knowledge .knowledge-comments .knowledge-comment-content {
+    padding-left: 20px;
 }

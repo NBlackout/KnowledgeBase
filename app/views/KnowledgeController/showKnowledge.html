@@ -18,5 +18,33 @@
                 #{backButton /}
             </div>
         </div>
+
+        <div class="knowledge-comments">
+            #{list items:comments, as:'comment'}
+                <div class="knowledge-comment">
+                    <div class="knowledge-comment-info">&{'knowledge.comment.info', comment.user.login, comment.createdDate.format()}</div>
+                    <div class="knowledge-comment-content">
+                        <pre>${comment.content}</pre>
+                    </div>
+                </div>
+            #{/list}
+        </div>
+
+        #{if session.get('user.id')}
+            <div>
+                <form action="@{KnowledgeController.saveComment()}" method="POST">
+                    <input name="knowledgeId" type="hidden" value="${knowledge.id}">
+                    <input name="userId" type="hidden" value="${session.get('user.id')}">
+
+                    <textarea class="span7" name="content" placeholder="&{'knowledge.comment'}"></textarea>
+
+                    <div class="control-group">
+                        <div class="controls">
+                            <button class="btn btn-primary" type="submit">&{'button.comment.add'}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        #{/if}
     </div>
 </fieldset>

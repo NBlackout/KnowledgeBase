@@ -3,6 +3,7 @@ package controllers;
 import java.util.Calendar;
 import java.util.List;
 
+import models.Comment;
 import models.Knowledge;
 import models.User;
 import play.data.validation.Required;
@@ -17,8 +18,9 @@ public class KnowledgeController extends SuperController {
 
 	public static void showKnowledge(Long knowledgeId) {
 		Knowledge knowledge = Knowledge.findById(knowledgeId);
+		List<Comment> comments = Comment.find("byKnowledge", knowledge).fetch();
 
-		render(knowledge);
+		render(knowledge, comments);
 	}
 
 	public static void createKnowledge() {
@@ -61,5 +63,24 @@ public class KnowledgeController extends SuperController {
 		knowledge.save();
 
 		showKnowledge(knowledge.id);
+	}
+
+	public static void saveComment(Long knowledgeId, @Required Long userId, String content) {
+		validation.required(content).message("error.field.required");
+
+		if (validation.hasErrors()) {
+			keepValidation();
+			showKnowledge(knowledgeId);
+		}
+
+		/* Knowledge creation */
+		Comment comment = new Comment();
+		comment.user = User.findById(userId);
+		comment.knowledge = Knowledge.findById(knowledgeId);
+		comment.content = content;
+		comment.createdDate = Calendar.getInstance().getTime();
+		comment.save();
+
+		showKnowledge(knowledgeId);
 	}
 }

@@ -23,11 +23,14 @@ button.create=Create
 button.edit=Edit
 button.save=Save
 button.back=Back
+button.comment.add=Add comment
 
 # Knowledges
 knowledge.title=Title
 knowledge.description=Description
 knowledge.info=Added by %s the %s
+knowledge.comment=Comment
+knowledge.comment.info=Added by %s the %s
 
 # Users
 user.login=Login
