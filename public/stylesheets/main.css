@@ -52,40 +52,40 @@ textarea[name="content"] {
 }
 
 /* Knowledge */
-.knowledge .actions {
-    height: 40px;
+.knowledge>.actions {
+    line-height: 40px;
 }
 
-.knowledge .knowledge-title {
+.knowledge>.title {
     font-size: 2em;
     line-height: 40px;
 }
 
-.knowledge .knowledge-info {
+.knowledge>.info {
     border-bottom: 1px solid #333333;
     color: #888888;
     font-size: 0.85em;
     padding-bottom: 5px;
 }
 
-.knowledge .knowledge-description {
+.knowledge>.description {
     margin-top: 20px;
 }
 
-.knowledge .knowledge-comments {
+.knowledge>.comments {
     margin-top: 30px;
 }
 
-.knowledge .knowledge-comments .knowledge-comment {
+.knowledge>.comments .comment {
     border-top: 1px solid #AAAAAA;
     margin-bottom: 20px;
 }
 
-.knowledge .knowledge-comments .knowledge-comment-info {
+.knowledge>.comments .info {
     color: #888888;
     font-size: 0.8em;
 }
 
-.knowledge .knowledge-comments .knowledge-comment-content {
+.knowledge .comments .content {
     padding-left: 20px;
 }

@@ -5,22 +5,22 @@
     <legend>&{'title.knowledge.show'}</legend>
 
     <div class="knowledge span7 offset1">
-        <div class="knowledge-actions pull-right">
+        <div class="actions pull-right">
             #{if session.get('user.id') && knowledge.user.id == Long.parseLong(session.get('user.id'))}
                 <a class="btn btn-primary" href="@{KnowledgeController.editKnowledge(knowledge.id)}">&{'button.edit'}</a>
             #{/if}
             #{backButton /}
         </div>
 
-        <div class="knowledge-title">${knowledge.title}</div>
-        <div class="knowledge-info">&{'knowledge.info', knowledge.user.login, knowledge.createdDate.format()}</div>
-        <div class="knowledge-description well">${knowledge.description.raw()}</div>
+        <div class="title">${knowledge.title}</div>
+        <div class="info">&{'knowledge.info', knowledge.user.login, knowledge.createdDate.format()}</div>
+        <div class="description well">${knowledge.description.raw()}</div>
 
-        <div class="knowledge-comments">
+        <div class="comments">
             #{list items:comments, as:'comment'}
-                <div class="knowledge-comment">
-                    <div class="knowledge-comment-info">&{'knowledge.comment.info', comment.user.login, comment.createdDate.format()}</div>
-                    <div class="knowledge-comment-content">
+                <div class="comment">
+                    <div class="info">&{'knowledge.comment.info', comment.user.login, comment.createdDate.format()}</div>
+                    <div class="content">
                         <pre>${comment.content}</pre>
                     </div>
                 </div>
