@@ -15,6 +15,7 @@
                 #{if session.get('user.id') && knowledge.user.id == Long.parseLong(session.get('user.id'))}
                     <a class="btn btn-primary" href="@{KnowledgeController.editKnowledge(knowledge.id)}">&{'button.edit'}</a>
                 #{/if}
+                #{backButton severity:'default' /}
             </div>
         </div>
     </div>

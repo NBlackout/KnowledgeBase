@@ -22,6 +22,8 @@ button.sign.up=Inscription
 button.create=Créer
 button.edit=Modifier
 button.save=Enregistrer
+button.back=Retour
+button.cancel=Annuler
 
 # Knowledges
 knowledge.title=Titre
