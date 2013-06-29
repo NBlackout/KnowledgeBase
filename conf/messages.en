@@ -6,6 +6,7 @@ application.welcome=Welcome %s
 title.home=Home
 title.user.sign.up=Signing up
 title.knowledges.show=Displaying knowledges
+title.knowledge.show=Displaying knowledge
 title.knowledge.create=Adding a knowledge
 
 # Navbar

@@ -15,6 +15,12 @@ public class KnowledgeController extends SuperController {
 		render(knowledges);
 	}
 
+	public static void showKnowledge(Long knowledgeId) {
+		Knowledge knowledge = Knowledge.findById(knowledgeId);
+
+		render(knowledge);
+	}
+
 	public static void createKnowledge() {
 		if (!session.contains("user.id")) {
 			Application.index();

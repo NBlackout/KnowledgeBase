@@ -6,7 +6,7 @@
 
     <ul>
         #{list items:knowledges, as:'knowledge'}
-            <li>${knowledge.title}</li>
+            <li><a href="@{KnowledgeController.showKnowledge(knowledge.id)}">${knowledge.title}</a></li>
         #{/list}
     </ul>
 </fieldset>

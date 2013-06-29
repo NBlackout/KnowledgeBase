@@ -1,0 +1,13 @@
+#{extends 'main.html' /}
+#{set title:messages.get('title.knowledge.show') /}
+
+<fieldset>
+    <legend>&{'title.knowledge.show'}</legend>
+
+    <div class="knowledge">
+        <span class="knowledge-user-login">@${knowledge.user.login}</span>
+        <span class="knowledge-title">${knowledge.title}</span>
+
+        <div class="well knowledge-description">${knowledge.description.raw()}</div>
+    </div>
+</fieldset>
