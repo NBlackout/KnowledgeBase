@@ -8,14 +8,14 @@
         <span class="knowledge-user-login">@${knowledge.user.login}</span>
         <span class="knowledge-title">${knowledge.title}</span>
 
-        #{if knowledge.user.id == Long.parseLong(session.get('user.id'))}
-            <span class="controls pull-right">
-                <a class="btn btn-primary" href="@{KnowledgeController.editKnowledge(knowledge.id)}">&{'button.edit'}</a>
-            </span>
-        #{/if}
+        <div class="knowledge-description well">${knowledge.description.raw()}</div>
 
-        <div class="clearfix"></div>
-
-        <div class="well knowledge-description">${knowledge.description.raw()}</div>
+        <div class="control-group">
+            <div class="controls">
+                #{if knowledge.user.id == Long.parseLong(session.get('user.id'))}
+                    <a class="btn btn-primary" href="@{KnowledgeController.editKnowledge(knowledge.id)}">&{'button.edit'}</a>
+                #{/if}
+            </div>
+        </div>
     </div>
 </fieldset>
