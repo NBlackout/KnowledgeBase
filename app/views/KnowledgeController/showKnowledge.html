@@ -18,28 +18,84 @@
 
         <div class="comments">
             #{list items:comments, as:'comment'}
-                <div class="comment">
+                <div class="comment" data-comment-id="${comment.id}">
+
+                    <form class="deleteComment" action="@{CommentController.deleteComment()}" method="POST">
+                        <input name="commentId" type="hidden" value="${comment.id}">
+                    </form>
+
                     <div class="info">&{'knowledge.comment.info', comment.user.login, comment.createdDate.format()}</div>
-                    <div class="content">
-                        <pre>${comment.content}</pre>
+                    <div class="actions pull-right">
+                        #{if session.get('user.id') && comment.user.id == Long.parseLong(session.get('user.id'))}
+                            <a class="edit" href="#"><i class="icon-edit"></i></a>
+                            <a class="save" href="#"><i class="icon-ok"></i></a>
+                            <a class="remove" href="#"><i class="icon-remove"></i></a>
+
+                            <form class="updateComment pull-right" action="@{CommentController.saveComment()}" method="POST">
+                                <input name="commentId" type="hidden" value="${comment.id}">
+                                <input name="knowledgeId" type="hidden" value="${knowledge.id}">
+                                <input name="userId" type="hidden" value="${session.get('user.id')}">
+                                <input name="content" type="hidden">
+                            </form>
+
+                            <form class="deleteComment pull-right" action="@{CommentController.deleteComment()}" method="POST">
+                                <input name="commentId" type="hidden" value="${comment.id}">
+                            </form>
+                        #{/if}
                     </div>
+
+                    <div class="content">#{verbatim}${comment.content}#{/verbatim}</div>
                 </div>
             #{/list}
         </div>
 
         #{if session.get('user.id')}
             <div>
-                <form action="@{KnowledgeController.saveComment()}" method="POST">
+                <form action="@{CommentController.saveComment()}" method="POST">
                     <input name="knowledgeId" type="hidden" value="${knowledge.id}">
                     <input name="userId" type="hidden" value="${session.get('user.id')}">
 
                     <textarea class="span7" name="content" placeholder="&{'knowledge.comment'}"></textarea>
 
                     <div class="pull-right">
-                        <button class="btn btn-primary" type="submit">&{'button.comment.add'}</button>
+                        <button class="btn btn-primary" type="submit">&{'button.publish'}</button>
                     </div>
                 </form>
             </div>
         #{/if}
     </div>
 </fieldset>
+
+<script type="text/javascript">
+	$(function() {
+		$('.comment .actions a').click(function() {
+			var action = $(this);
+
+			var actions = action.parent();
+			var edit = actions.find('.edit');
+			var save = actions.find('.save');
+			var remove = actions.find('.remove');
+
+			var comment = actions.parent();
+			var commentId = comment.attr('data-comment-id');
+			var content = comment.find('.content');
+
+			if (action.hasClass('edit')) {
+				// Update comment content
+				content.text(content.html());
+				content.attr('contenteditable', 'true');
+
+				// Update comment actions
+				edit.hide();
+				save.show();
+			} else if (action.hasClass('save')) {
+				actions.find('.updateComment input[name="content"]').val(content.text());
+				actions.find('.updateComment').submit();
+			} else {
+				actions.find('.deleteComment').submit();
+			}
+
+			return false;
+		});
+	});
+</script>

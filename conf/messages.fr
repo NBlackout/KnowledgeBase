@@ -23,7 +23,7 @@ button.create=Créer
 button.edit=Modifier
 button.save=Enregistrer
 button.back=Retour
-button.comment.add=Ajouter le commentaire
+button.publish=Publier
 
 # Knowledges
 knowledge.title=Titre

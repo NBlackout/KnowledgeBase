@@ -76,16 +76,20 @@ textarea[name="content"] {
     margin-top: 30px;
 }
 
-.knowledge>.comments .comment {
+.knowledge>.comments>.comment {
     border-top: 1px solid #AAAAAA;
     margin-bottom: 20px;
 }
 
-.knowledge>.comments .info {
+.knowledge>.comments>.comment>.info {
     color: #888888;
     font-size: 0.8em;
 }
 
-.knowledge .comments .content {
+.knowledge>.comments>.comment>.actions>.save {
+    display: none;
+}
+
+.knowledge>.comments>.comment>.content {
     padding-left: 20px;
 }

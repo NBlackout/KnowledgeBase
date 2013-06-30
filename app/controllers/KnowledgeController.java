@@ -31,25 +31,6 @@ public class KnowledgeController extends SuperController {
 		render(knowledge);
 	}
 
-	public static void saveComment(Long knowledgeId, @Required Long userId, String content) {
-		validation.required(content).message("error.field.required");
-
-		if (validation.hasErrors()) {
-			keepValidation();
-			showKnowledge(knowledgeId);
-		}
-
-		/* Comment creation */
-		Comment comment = new Comment();
-		comment.user = User.findById(userId);
-		comment.knowledge = Knowledge.findById(knowledgeId);
-		comment.content = content;
-		comment.createdDate = Calendar.getInstance().getTime();
-		comment.save();
-
-		showKnowledge(knowledgeId);
-	}
-
 	public static void saveKnowledge(Long knowledgeId, @Required Long userId, String title, String description) {
 		/* Parameters validation */
 		validation.required(title).message("error.field.required");
