@@ -10,7 +10,7 @@ public class UserController extends SuperController {
 		validation.required(password).message("error.field.required");
 
 		if (User.count("byLogin", login) != 0) {
-			validation.addError("login", "user.already.exists");
+			validation.addError("login", "error.user.already.exists");
 		}
 
 		if (validation.hasErrors()) {

@@ -4,39 +4,38 @@ application.welcome=Bienvenue %s
 
 # Titles
 title.home=Accueil
-title.user.sign.up=Inscription
-title.knowledges.show=Affichage des connaissances
-title.knowledge.show=Affichage d'une connaissance
 title.knowledge.create=Ajout d'une connaissance
 title.knowledge.edit=Modification d'une connaissance
+title.knowledge.show=Affichage d'une connaissance
+title.knowledges.show=Affichage des connaissances
+title.user.sign.up=Inscription
 
 # Navbar
+navbar.knowledge.create=Ajouter une connaissance
 navbar.knowledges=Connaissances
 navbar.knowledges.show=Afficher les connaissances
-navbar.knowledge.create=Ajouter une connaissance
 
 # Buttons
-button.log.in=Connexion
-button.log.out=Déconnexion
-button.sign.up=Inscription
+button.back=Retour
 button.create=Créer
 button.edit=Modifier
-button.save=Enregistrer
-button.back=Retour
+button.log.in=Connexion
+button.log.out=Déconnexion
 button.publish=Publier
+button.save=Enregistrer
+button.sign.up=Inscription
 
 # Knowledges
-knowledge.title=Titre
-knowledge.description=Description
-knowledge.info=Ajoutée par %s le %s
 knowledge.comment=Commentaire
 knowledge.comment.info=Ajouté par %s le %s
+knowledge.description=Description
+knowledge.info=Ajoutée par %s le %s
+knowledge.title=Titre
 
 # Users
 user.login=Identifiant
 user.password=Mot de passe
-user.not.found=Utilisateur non trouvé
-user.already.exists=Utilisateur existant
 
 # Errors
 error.field.required=Ce champs est requis
+error.user.already.exists=Utilisateur existant

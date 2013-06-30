@@ -55,10 +55,18 @@
                     <input name="knowledgeId" type="hidden" value="${knowledge.id}">
                     <input name="userId" type="hidden" value="${session.get('user.id')}">
 
-                    <textarea class="span7" name="content" placeholder="&{'knowledge.comment'}"></textarea>
+                    <div class="control-group #{ifError 'content'} error#{/ifError}">
+                        <textarea class="span7" name="content" placeholder="&{'knowledge.comment'}"></textarea>
 
-                    <div class="pull-right">
-                        <button class="btn btn-primary" type="submit">&{'button.publish'}</button>
+                        #{ifError 'content'}
+                            <div class="pull-left">
+                                <span class="help-inline">#{error 'content' /}</span>
+                            </div>
+                        #{/ifError}
+
+                        <div class="pull-right">
+                            <button class="btn btn-primary" type="submit">&{'button.publish'}</button>
+                        </div>
                     </div>
                 </form>
             </div>

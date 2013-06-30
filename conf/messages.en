@@ -4,39 +4,38 @@ application.welcome=Welcome %s
 
 # Titles
 title.home=Home
-title.user.sign.up=Signing up
-title.knowledges.show=Displaying knowledges
-title.knowledge.show=Displaying knowledge
 title.knowledge.create=Adding a knowledge
 title.knowledge.edit=Editing a knowledge
+title.knowledge.show=Displaying knowledge
+title.knowledges.show=Displaying knowledges
+title.user.sign.up=Signing up
 
 # Navbar
+navbar.knowledge.create=Add knowledge
 navbar.knowledges=Knowledges
 navbar.knowledges.show=Display knowledges
-navbar.knowledge.create=Add knowledge
 
 # Buttons
-button.log.in=Log in
-button.log.out=Log out
-button.sign.up=Sign up
+button.back=Back
 button.create=Create
 button.edit=Edit
-button.save=Save
-button.back=Back
+button.log.in=Log in
+button.log.out=Log out
 button.publish=Publish
+button.save=Save
+button.sign.up=Sign up
 
 # Knowledges
-knowledge.title=Title
-knowledge.description=Description
-knowledge.info=Added by %s the %s
 knowledge.comment=Comment
 knowledge.comment.info=Added by %s the %s
+knowledge.description=Description
+knowledge.info=Added by %s the %s
+knowledge.title=Title
 
 # Users
 user.login=Login
 user.password=Password
-user.not.found=User non found
-user.already.exists=User already exists
 
 # Errors
 error.field.required=This field is required
+error.user.already.exists=User already exists
