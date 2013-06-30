@@ -1,12 +1,16 @@
 #{extends 'main.html' /}
 #{set title:messages.get('title.knowledge.show') /}
 
+%{
+    userId = (session.get('user.id')) ? Long.parseLong(session.get('user.id')) : null
+%}
+
 <fieldset>
     <legend>&{'title.knowledge.show'}</legend>
 
     <div class="knowledge span7 offset1">
         <div class="actions pull-right">
-            #{if session.get('user.id') && knowledge.user.id == Long.parseLong(session.get('user.id'))}
+            #{if knowledge.user.id == userId}
                 <a class="btn btn-primary" href="@{KnowledgeController.editKnowledge(knowledge.id)}">&{'button.edit'}</a>
             #{/if}
             #{backButton /}
@@ -26,10 +30,9 @@
 
                     <div class="info">&{'knowledge.comment.info', comment.user.login, comment.createdDate.format()}</div>
                     <div class="actions pull-right">
-                        #{if session.get('user.id') && comment.user.id == Long.parseLong(session.get('user.id'))}
+                        #{if comment.user.id == userId}
                             <a class="edit" href="#"><i class="icon-edit"></i></a>
                             <a class="save" href="#"><i class="icon-ok"></i></a>
-                            <a class="remove" href="#"><i class="icon-remove"></i></a>
 
                             <form class="updateComment pull-right" action="@{CommentController.saveComment()}" method="POST">
                                 <input name="commentId" type="hidden" value="${comment.id}">
@@ -37,6 +40,9 @@
                                 <input name="userId" type="hidden" value="${session.get('user.id')}">
                                 <input name="content" type="hidden">
                             </form>
+                        #{/if}
+                        #{if comment.user.id == userId || knowledge.user.id == userId}
+                            <a class="remove" href="#"><i class="icon-remove"></i></a>
 
                             <form class="deleteComment pull-right" action="@{CommentController.deleteComment()}" method="POST">
                                 <input name="commentId" type="hidden" value="${comment.id}">
