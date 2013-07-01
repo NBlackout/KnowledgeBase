@@ -1,4 +1,14 @@
 $(function() {
+	// Add a delay for key up event
+	$.fn.keyupDelay = function(callback, delay) {
+		var timer = 0;
+
+		return $(this).on('keyup', function() {
+			clearTimeout(timer);
+			timer = setTimeout(callback, delay);
+		});
+	};
+
 	// Handler for TAB and SHIFT + TAB keys
 	$("textarea").keydown(function(event) {
 		var tabChars = "    ";

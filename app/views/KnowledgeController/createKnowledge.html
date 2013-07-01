@@ -27,6 +27,18 @@
             </div>
         </div>
 
+        <div class="control-group#{ifError 'description'} error#{/ifError}">
+            <label class="control-label required" for="description">&{'knowledge.tags'}</label>
+            <div class="controls">
+                <div id="tags" class="tags input-xxlarge">
+                    <input class="tag input-xxlarge" type="text" placeholder="&{'knowledge.tags'}">
+                </div>
+                #{ifError 'description'}
+                    <span class="help-inline">#{error 'description' /}</span>
+                #{/ifError}
+            </div>
+        </div>
+
         <div class="control-group">
             <div class="controls">
                 <button class="btn btn-primary" type="submit">&{'button.create'}</button>
@@ -35,3 +47,24 @@
         </div>
     </form>
 </fieldset>
+
+<script type="text/javascript">
+	$(function() {
+		var findTagsByNameLike = #{jsAction @TagController.findTagsByNameLike(':name') /}
+		var tags = $('.tags');
+		var tag = tags.find('.tag');
+	
+		tag.keyupDelay(function() {
+			var name = tag.val();
+			if (name) {
+				$.getJSON(findTagsByNameLike({name: name}), function(results) {
+					if (results.length != 0) {
+						$.each(results, function(index, result) {
+							alert(result.name);
+						})
+					}
+				});
+			}
+		}, 500);
+	});
+</script>

@@ -30,6 +30,7 @@ knowledge.comment=Commentaire
 knowledge.comment.info=Ajouté par %s le %s
 knowledge.description=Description
 knowledge.info=Ajoutée par %s le %s
+knowledge.tags=Tags
 knowledge.title=Titre
 
 # Users
