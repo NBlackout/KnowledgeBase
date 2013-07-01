@@ -5,7 +5,9 @@ import java.util.List;
 
 import models.Comment;
 import models.Knowledge;
+import models.Tag;
 import models.User;
+import play.data.binding.As;
 import play.data.validation.Required;
 
 public class KnowledgeController extends SuperController {
@@ -31,7 +33,7 @@ public class KnowledgeController extends SuperController {
 		render(knowledge);
 	}
 
-	public static void saveKnowledge(Long knowledgeId, @Required Long userId, String title, String description) {
+	public static void saveKnowledge(Long knowledgeId, @Required Long userId, String title, String description, @As(",") List<Long> tagIds) {
 		/* Parameters validation */
 		validation.required(title).message("error.field.required");
 		validation.required(description).message("error.field.required");
@@ -47,6 +49,7 @@ public class KnowledgeController extends SuperController {
 		knowledge.title = title;
 		knowledge.description = description;
 		knowledge.createdDate = Calendar.getInstance().getTime();
+		knowledge.tags = Tag.find("id in :tagIds").bind("tagIds", tagIds).fetch();
 		knowledge.save();
 
 		showKnowledge(knowledge.id);

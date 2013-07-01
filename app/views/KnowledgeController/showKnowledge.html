@@ -2,7 +2,12 @@
 #{set title:messages.get('title.knowledge.show') /}
 
 %{
-    userId = (session.get('user.id')) ? Long.parseLong(session.get('user.id')) : null
+    Long userId = (session.get('user.id')) ? Long.parseLong(session.get('user.id')) : null;
+
+    List<String> tags = new LinkedList<>();
+    for (tag in knowledge.tags) {
+        tags.add(tag.name);
+    }
 %}
 
 <fieldset>
@@ -17,7 +22,7 @@
         </div>
 
         <div class="title">${knowledge.title}</div>
-        <div class="info">&{'knowledge.info', knowledge.user.login, knowledge.createdDate.format()}</div>
+        <div class="info">&{'knowledge.info', knowledge.user.login, knowledge.createdDate.format(), tags.join(', ')}</div>
         <div class="description well">${knowledge.description.raw()}</div>
 
         <div class="comments">

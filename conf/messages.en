@@ -29,7 +29,7 @@ button.sign.up=Sign up
 knowledge.comment=Comment
 knowledge.comment.info=Added by %s the %s
 knowledge.description=Description
-knowledge.info=Added by %s the %s
+knowledge.info=Added by %s the %s in %s
 knowledge.tags=Tags
 knowledge.title=Title
 

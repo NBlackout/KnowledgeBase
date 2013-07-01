@@ -1,19 +1,19 @@
-#{extends 'main.html' /}
-#{set title:messages.get('title.knowledge.edit') /}
+#{extends 'main.html' /} #{set title:messages.get('title.knowledge.edit') /}
 
 <fieldset>
     <legend>&{'title.knowledge.edit'}</legend>
 
-    <form class="form-horizontal" action="@{KnowledgeController.saveKnowledge()}" method="POST">
+    <form id="form" class="form-horizontal" action="@{KnowledgeController.saveKnowledge()}" method="POST">
         <input name="knowledgeId" type="hidden" value="${knowledge.id}">
         <input name="userId" type="hidden" value="${session.get('user.id')}">
+        <input name="tagIds" type="hidden">
 
         <div class="control-group#{ifError 'title'} error#{/ifError}">
             <label class="control-label required" for="title">&{'knowledge.title'}</label>
             <div class="controls">
                 <input id="title" class="input-xxlarge" name="title" type="text" value="${knowledge.title}" placeholder="&{'knowledge.title'}">
                 #{ifError 'title'}
-                    <span class="help-inline">#{error 'title' /}</span>
+                <span class="help-inline">#{error 'title' /}</span>
                 #{/ifError}
             </div>
         </div>
@@ -23,10 +23,31 @@
             <div class="controls">
                 <textarea id="description" class="input-xxlarge" name="description" placeholder="&{'knowledge.description'}">${knowledge.description}</textarea>
                 #{ifError 'description'}
-                    <span class="help-inline">#{error 'description' /}</span>
+                <span class="help-inline">#{error 'description' /}</span>
                 #{/ifError}
             </div>
         </div>
+
+        <div class="control-group#{ifError 'description'} error#{/ifError}">
+            <label class="control-label required" for="tag">&{'knowledge.tags'}</label>
+            <div class="controls">
+                <div id="tags" class="input-xxlarge">
+                    <input id="tag" class="input-xxlarge" type="text" placeholder="&{'knowledge.tags'}">
+                    <div id="suggestions"></div>
+                </div>
+                #{ifError 'description'}
+                <span class="help-inline">#{error 'description' /}</span>
+                #{/ifError}
+            </div>
+        </div>
+
+        <div id="selectedTags" style="display: none;">
+            #{list items:knowledge.tags, as:'tag'}
+                <span class="selectedTag" data-tag-id="&{tag.id}">${tag.name}</span>
+            #{/list}
+        </div>
+
+        <div id="suggestions"></div>
 
         <div class="control-group">
             <div class="controls">
@@ -36,3 +57,119 @@
         </div>
     </form>
 </fieldset>
+
+<script type="text/javascript">
+	$(function() {
+		var findTagsByNameLike = #{jsAction @TagController.findTagsByNameLike(':name') /}
+
+		var selectedTags = $('#tags');
+		var userTagInput = $('#tag');
+
+		var suggestions = $('#suggestions');
+
+		// Build a tag
+		var buildTag = function(tag) {
+			var removeTag = buildActionIcon('icon-remove');
+
+			var selectedTag = $('<span>').addClass('selectedTag').attr('data-tag-id', tag.id);
+			selectedTag.append(tag.name);
+			selectedTag.append(removeTag);
+
+			// Append selected tag
+			userTagInput.before(selectedTag);
+
+			removeTag.click(function() {
+				// Update user input
+				userTagInput.css('width', userTagInput.width() + selectedTag.width() + 6);
+				userTagInput.val('');
+				userTagInput.focus();
+
+				// Remove selected tag
+				selectedTag.remove();
+			});
+
+			// Update user input
+			userTagInput.css('width', userTagInput.width() - selectedTag.width() - 6);
+			userTagInput.val('');
+			userTagInput.focus();
+		}
+
+		// Build a suggestion
+		var buildSuggestion = function(tag) {
+			var name = $('<a>').attr('href', '#').text(tag.name);
+			name.click(function() {
+				buildTag(tag);
+
+				// Reinitialize suggestions
+				suggestions.empty().hide();
+
+				return false;
+			});
+
+			var suggestion = $('<span>').addClass('suggestion');
+			suggestion.append(name);
+
+			suggestions.append(suggestion);
+		};
+
+		// Reinitialize suggestions
+		userTagInput.keyup(function() {
+			suggestions.empty().hide();
+		});
+
+		// Handle a delayed key up event on user input and build suggestions
+		userTagInput.keyupDelay(function() {
+			var name = userTagInput.val();
+			if (name) {
+				$.getJSON(findTagsByNameLike({name : name}), function(tags) {
+					if (tags.length != 0) {
+						$.each(tags, function(index, tag) {
+							buildSuggestion(tag);
+						});
+
+						suggestions.show();
+					}
+				});
+			}
+		}, 500);
+
+		$('#form').submit(function() {
+			var tagIds = new Array();
+			var tags = selectedTags.find('.selectedTag');
+			if (tags.length != 0) {
+				$.each(tags, function(index, tag) {
+					tagIds.push($(tag).attr('data-tag-id'));
+				});
+
+				$('#form [name="tagIds"]').val(tagIds);
+			} else {
+				return false;
+			}
+		});
+
+		$('#selectedTags .selectedTag').each(function(index, data) {
+			var removeTag = buildActionIcon('icon-remove');
+
+			var selectedTag = $(data).clone();
+			selectedTag.append(removeTag);
+
+			// Append selected tag
+			userTagInput.before(selectedTag);
+
+			removeTag.click(function() {
+				// Update user input
+				userTagInput.css('width', userTagInput.width() + selectedTag.width() + 6);
+				userTagInput.val('');
+				userTagInput.focus();
+
+				// Remove selected tag
+				selectedTag.remove();
+			});
+
+			// Update user input
+			userTagInput.css('width', userTagInput.width() - selectedTag.width() - 6);
+			userTagInput.val('');
+			userTagInput.focus();
+		});
+	});
+</script>

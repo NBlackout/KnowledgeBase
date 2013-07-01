@@ -9,6 +9,21 @@ $(function() {
 		});
 	};
 
+	// Remove element from an array
+	Array.prototype.remove = function(elem) {
+		return $.grep(this, function(e) {
+			return e !== elem;
+		});
+	};
+
+	// Build an icon with its defined action
+	buildActionIcon = function(icon, action) {
+		var icon = $('<i>').addClass(icon);
+		var link = $('<a>').append(icon);
+
+		return link;
+	};
+
 	// Handler for TAB and SHIFT + TAB keys
 	$("textarea").keydown(function(event) {
 		var tabChars = "    ";

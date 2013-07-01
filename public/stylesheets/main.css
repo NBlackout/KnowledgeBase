@@ -95,20 +95,52 @@ textarea[name="content"] {
 }
 
 /* Tags */
-.tags {
+#tags {
     border: 1px solid #CCCCCC;
     border-radius: 4px;
     box-sadow: inser 0px 1px 1px rgba(0, 0, 0, 0.071);
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
     padding: 4px 6px;
 }
 
-.tags>.tag {
+#tags>.selectedTag {
+    background-color: #E0EAF1;
+    border-bottom: 1px solid #B3CEE1;
+    border-right: 1px solid #B3CEE1;
+    color: #3E6D8E;
+    margin-right: 5px;
+}
+
+#tags>.selectedTag>a {
+    cursor: pointer;
+}
+
+#tags>#tag,#tags>#tag:focus {
+    background-color: transparent;
     border: none;
     box-shadow: none;
     padding: 0px;
+    vertical-align: text-bottom;
 }
 
-.tags>.tag:focus {
-    border: none;
-    box-shadow: none;
+/* Suggestions */
+#suggestions {
+    background-color: white;
+    border: 1px solid black;
+    display: none;
+    position: absolute;
+    z-index: 1;
+    position: absolute;
+}
+
+#suggestions .suggestion {
+    float: left;
+    margin: 5px;
+    width: 200px;
+}
+
+#suggestions .suggestion:nth-child(3n+1) {
+    clear: both;
 }
