@@ -112,6 +112,19 @@
 			suggestions.append(suggestion);
 		};
 
+		// Add focused class on tags when user tag input is focused
+		userTagInput.focus(function() {
+			selectedTags.addClass('focused');
+		});
+
+		// Remove focused class on tags when user tag input is blured
+		userTagInput.blur(function() {
+			selectedTags.removeClass('focused');
+
+			// Reinitialize suggestions
+			suggestions.empty().hide();
+		});
+
 		// Reinitialize suggestions
 		userTagInput.keyup(function() {
 			suggestions.empty().hide();
@@ -169,7 +182,6 @@
 			// Update user input
 			userTagInput.css('width', userTagInput.width() - selectedTag.width() - 6);
 			userTagInput.val('');
-			userTagInput.focus();
 		});
 	});
 </script>

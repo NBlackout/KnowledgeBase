@@ -111,6 +111,9 @@
 		// Remove focused class on tags when user tag input is blured
 		userTagInput.blur(function() {
 			selectedTags.removeClass('focused');
+
+			// Reinitialize suggestions
+			suggestions.empty().hide();
 		});
 
 		// Reinitialize suggestions
