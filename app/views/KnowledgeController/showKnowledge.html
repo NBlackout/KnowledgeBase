@@ -23,7 +23,7 @@
 
         <div class="title">${knowledge.title}</div>
         <div class="info">&{'knowledge.info', knowledge.user.login, knowledge.createdDate.format(), tags.join(', ')}</div>
-        <div class="description well">${knowledge.description.raw()}</div>
+        <div class="description well">${knowledge.description.nl2br().raw()}</div>
 
         <div class="comments">
             #{list items:comments, as:'comment'}
