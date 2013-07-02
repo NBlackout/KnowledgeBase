@@ -5,7 +5,7 @@
     Long userId = (session.get('user.id')) ? Long.parseLong(session.get('user.id')) : null;
 
     List<String> tags = new LinkedList<>();
-    for (tag in knowledge.tags) {
+    for (tag in knowledge.tags.sort{it.name}) {
         tags.add(tag.name);
     }
 %}
