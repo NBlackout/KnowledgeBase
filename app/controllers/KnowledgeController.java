@@ -3,6 +3,8 @@ package controllers;
 import java.util.Calendar;
 import java.util.List;
 
+import com.sun.mail.handlers.message_rfc822;
+
 import models.Comment;
 import models.Knowledge;
 import models.Tag;
@@ -37,6 +39,7 @@ public class KnowledgeController extends SuperController {
 		/* Parameters validation */
 		validation.required(title).message("error.field.required");
 		validation.required(description).message("error.field.required");
+		validation.required(tagIds).message("error.field.required");
 
 		if (validation.hasErrors()) {
 			keepValidation();
