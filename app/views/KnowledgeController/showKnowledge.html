@@ -27,14 +27,15 @@
 
         <div class="comments">
             #{list items:comments, as:'comment'}
-                <div class="comment" data-comment-id="${comment.id}">
+                <div class="comment">
                     <div class="info">
                         <span>&{'knowledge.comment.info', comment.user.login, comment.createdDate.format()}</span>
 
                         <div class="actions pull-right">
                             #{if comment.user.id == userId}
-                                <a class="edit" href="#"><i class="icon-edit"></i></a>
-                                <a class="save" href="#"><i class="icon-ok"></i></a>
+                                <a class="edit" href="#" title="&{'tooltip.comment.edit'}"><i class="icon-edit"></i></a>
+                                <a class="save" href="#" title="&{'tooltip.comment.save'}"><i class="icon-ok"></i></a>
+                                <a class="cancel" href="#" title="&{'tooltip.comment.cancel'}"><i class="icon-cancel"></i></a>
 
                                 <form class="updateComment pull-right" action="@{CommentController.saveComment()}" method="POST">
                                     <input name="commentId" type="hidden" value="${comment.id}">
@@ -45,7 +46,7 @@
                             #{/if}
 
                             #{if comment.user.id == userId || knowledge.user.id == userId}
-                                <a class="remove" href="#"><i class="icon-remove"></i></a>
+                                <a class="remove" href="#" title="&{'tooltip.comment.remove'}"><i class="icon-trash"></i></a>
 
                                 <form class="deleteComment pull-right" action="@{CommentController.deleteComment()}" method="POST">
                                     <input name="commentId" type="hidden" value="${comment.id}">
@@ -95,10 +96,9 @@
 			var actions = action.parent();
 			var edit = actions.find('.edit');
 			var save = actions.find('.save');
-			var remove = actions.find('.remove');
+			var cancel = actions.find('.cancel');
 
 			var comment = actions.parent().parent();
-			var commentId = comment.attr('data-comment-id');
 
 			var content = comment.find('.content');
 			var contentDiv = comment.find('.content-div');
@@ -112,10 +112,20 @@
 				// Update comment actions
 				edit.hide();
 				save.show();
+				cancel.show();
+			} else if (action.hasClass('cancel')) {
+				// Update comment content
+				contentTextarea.hide();
+				contentDiv.show();
+
+				// Update comment actions
+				edit.show();
+				save.hide();
+				cancel.hide();
 			} else if (action.hasClass('save')) {
 				actions.find('.updateComment input[name="content"]').val(contentTextarea.val());
 				actions.find('.updateComment').submit();
-			} else {
+			} else if (action.hasClass('remove')) {
 				actions.find('.deleteComment').submit();
 			}
 

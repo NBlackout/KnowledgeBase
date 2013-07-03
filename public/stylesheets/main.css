@@ -12,6 +12,10 @@ textarea[name="content"] {
     height: 80px;
 }
 
+/* Icons */
+.icon-cancel {
+    background-position: -312px 0;
+}
 /* Navbar */
 .navbar {
     margin-bottom: 20px;
@@ -89,7 +93,7 @@ textarea[name="content"] {
     margin-top: 5px;
 }
 
-.knowledge>.comments>.comment>.info>.actions>.save {
+.knowledge>.comments>.comment>.info>.actions>.save, .knowledge>.comments>.comment>.info>.actions>.cancel {
     display: none;
 }
 

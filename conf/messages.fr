@@ -25,6 +25,12 @@ button.publish=Publier
 button.save=Enregistrer
 button.sign.up=Inscription
 
+# Tooltips
+tooltip.comment.cancel=Annuler
+tooltip.comment.edit=Éditer
+tooltip.comment.remove=Supprimer
+tooltip.comment.save=Enregistrer
+
 # Knowledges
 knowledge.comment=Commentaire
 knowledge.comment.info=Ajouté par %s le %s
