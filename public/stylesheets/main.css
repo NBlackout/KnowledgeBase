@@ -65,11 +65,12 @@ textarea[name="content"] {
     border-bottom: 1px solid #333333;
     color: #888888;
     font-size: 0.85em;
-    padding-bottom: 5px;
+    padding-bottom: 15px;
 }
 
 .knowledge>.description {
     margin-top: 20px;
+    margin-left: 15px;
 }
 
 .knowledge>.comments {
@@ -77,23 +78,30 @@ textarea[name="content"] {
 }
 
 .knowledge>.comments>.comment {
-    border-top: 1px solid #AAAAAA;
-    margin-bottom: 20px;
+    border-top: 1px dotted #AAAAAA;
+    margin-bottom: 10px;
+    position: relative;
 }
 
 .knowledge>.comments>.comment>.info {
     color: #888888;
     font-size: 0.8em;
+    margin-top: 5px;
 }
 
-.knowledge>.comments>.comment>.actions>.save {
+.knowledge>.comments>.comment>.info>.actions>.save {
     display: none;
 }
 
-.knowledge>.comments>.comment>.content {
-    padding-left: 20px;
+.knowledge>.comments>.comment>.content>.content-textarea {
+    display: none;
+    height: 80px;
 }
 
+.knowledge>.publication {
+    border-top: 1px solid #333333;
+    padding-top: 15px;
+}
 /* Tags */
 #tags {
     border: 1px solid #CCCCCC;

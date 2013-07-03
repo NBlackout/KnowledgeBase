@@ -23,45 +23,47 @@
 
         <div class="title">${knowledge.title}</div>
         <div class="info">&{'knowledge.info', knowledge.user.login, knowledge.createdDate.format(), tags.join(', ')}</div>
-        <div class="description well">${knowledge.description.nl2br().raw()}</div>
+        <div class="description well">${knowledge.description.raw().nl2br()}</div>
 
         <div class="comments">
             #{list items:comments, as:'comment'}
                 <div class="comment" data-comment-id="${comment.id}">
+                    <div class="info">
+                        <span>&{'knowledge.comment.info', comment.user.login, comment.createdDate.format()}</span>
 
-                    <form class="deleteComment" action="@{CommentController.deleteComment()}" method="POST">
-                        <input name="commentId" type="hidden" value="${comment.id}">
-                    </form>
+                        <div class="actions pull-right">
+                            #{if comment.user.id == userId}
+                                <a class="edit" href="#"><i class="icon-edit"></i></a>
+                                <a class="save" href="#"><i class="icon-ok"></i></a>
 
-                    <div class="info">&{'knowledge.comment.info', comment.user.login, comment.createdDate.format()}</div>
-                    <div class="actions pull-right">
-                        #{if comment.user.id == userId}
-                            <a class="edit" href="#"><i class="icon-edit"></i></a>
-                            <a class="save" href="#"><i class="icon-ok"></i></a>
+                                <form class="updateComment pull-right" action="@{CommentController.saveComment()}" method="POST">
+                                    <input name="commentId" type="hidden" value="${comment.id}">
+                                    <input name="knowledgeId" type="hidden" value="${knowledge.id}">
+                                    <input name="userId" type="hidden" value="${session.get('user.id')}">
+                                    <input name="content" type="hidden">
+                                </form>
+                            #{/if}
 
-                            <form class="updateComment pull-right" action="@{CommentController.saveComment()}" method="POST">
-                                <input name="commentId" type="hidden" value="${comment.id}">
-                                <input name="knowledgeId" type="hidden" value="${knowledge.id}">
-                                <input name="userId" type="hidden" value="${session.get('user.id')}">
-                                <input name="content" type="hidden">
-                            </form>
-                        #{/if}
-                        #{if comment.user.id == userId || knowledge.user.id == userId}
-                            <a class="remove" href="#"><i class="icon-remove"></i></a>
+                            #{if comment.user.id == userId || knowledge.user.id == userId}
+                                <a class="remove" href="#"><i class="icon-remove"></i></a>
 
-                            <form class="deleteComment pull-right" action="@{CommentController.deleteComment()}" method="POST">
-                                <input name="commentId" type="hidden" value="${comment.id}">
-                            </form>
-                        #{/if}
+                                <form class="deleteComment pull-right" action="@{CommentController.deleteComment()}" method="POST">
+                                    <input name="commentId" type="hidden" value="${comment.id}">
+                                </form>
+                            #{/if}
+                        </div>
                     </div>
 
-                    <div class="content">#{verbatim}${comment.content}#{/verbatim}</div>
+                    <div class="content">
+                        <div class="content-div">${comment.content.raw().nl2br()}</div>
+                        <textarea class="content-textarea span7">${comment.content.raw()}</textarea>
+                    </div>
                 </div>
             #{/list}
         </div>
 
         #{if session.get('user.id')}
-            <div>
+            <div class="publication">
                 <form action="@{CommentController.saveComment()}" method="POST">
                     <input name="knowledgeId" type="hidden" value="${knowledge.id}">
                     <input name="userId" type="hidden" value="${session.get('user.id')}">
@@ -87,7 +89,7 @@
 
 <script type="text/javascript">
 	$(function() {
-		$('.comment .actions a').click(function() {
+		$('.comment .info .actions a').click(function() {
 			var action = $(this);
 
 			var actions = action.parent();
@@ -95,20 +97,23 @@
 			var save = actions.find('.save');
 			var remove = actions.find('.remove');
 
-			var comment = actions.parent();
+			var comment = actions.parent().parent();
 			var commentId = comment.attr('data-comment-id');
+			
 			var content = comment.find('.content');
+			var contentDiv = comment.find('.content-div');
+			var contentTextarea = content.find('.content-textarea');
 
 			if (action.hasClass('edit')) {
 				// Update comment content
-				content.text(content.html());
-				content.attr('contenteditable', 'true');
+				contentTextarea.show();
+				contentDiv.hide();
 
 				// Update comment actions
 				edit.hide();
 				save.show();
 			} else if (action.hasClass('save')) {
-				actions.find('.updateComment input[name="content"]').val(content.text());
+				actions.find('.updateComment input[name="content"]').val(contentTextarea.val());
 				actions.find('.updateComment').submit();
 			} else {
 				actions.find('.deleteComment').submit();
