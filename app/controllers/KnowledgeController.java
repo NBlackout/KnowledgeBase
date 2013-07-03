@@ -3,8 +3,6 @@ package controllers;
 import java.util.Calendar;
 import java.util.List;
 
-import com.sun.mail.handlers.message_rfc822;
-
 import models.Comment;
 import models.Knowledge;
 import models.Tag;

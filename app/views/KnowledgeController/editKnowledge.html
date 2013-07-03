@@ -1,4 +1,5 @@
-#{extends 'main.html' /} #{set title:messages.get('title.knowledge.edit') /}
+#{extends 'main.html' /}
+#{set title:messages.get('title.knowledge.edit') /}
 
 <fieldset>
     <legend>&{'title.knowledge.edit'}</legend>
@@ -13,7 +14,7 @@
             <div class="controls">
                 <input id="title" class="input-xxlarge" name="title" type="text" value="${knowledge.title}" placeholder="&{'knowledge.title'}">
                 #{ifError 'title'}
-                <span class="help-inline">#{error 'title' /}</span>
+                    <span class="help-inline">#{error 'title' /}</span>
                 #{/ifError}
             </div>
         </div>
@@ -23,7 +24,7 @@
             <div class="controls">
                 <textarea id="description" class="input-xxlarge" name="description" placeholder="&{'knowledge.description'}">${knowledge.description}</textarea>
                 #{ifError 'description'}
-                <span class="help-inline">#{error 'description' /}</span>
+                    <span class="help-inline">#{error 'description' /}</span>
                 #{/ifError}
             </div>
         </div>
@@ -36,7 +37,7 @@
                     <div id="suggestions"></div>
                 </div>
                 #{ifError 'description'}
-                <span class="help-inline">#{error 'description' /}</span>
+                    <span class="help-inline">#{error 'description' /}</span>
                 #{/ifError}
             </div>
         </div>
