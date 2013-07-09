@@ -40,7 +40,7 @@
                                 <form class="updateComment pull-right" action="@{CommentController.saveComment()}" method="POST">
                                     <input name="commentId" type="hidden" value="${comment.id}">
                                     <input name="knowledgeId" type="hidden" value="${knowledge.id}">
-                                    <input name="userId" type="hidden" value="${session.get('user.id')}">
+                                    <input name="userId" type="hidden" value="${userId}">
                                     <input name="content" type="hidden">
                                 </form>
                             #{/if}
@@ -63,11 +63,11 @@
             #{/list}
         </div>
 
-        #{if session.get('user.id')}
+        #{if userId}
             <div class="publication">
                 <form action="@{CommentController.saveComment()}" method="POST">
                     <input name="knowledgeId" type="hidden" value="${knowledge.id}">
-                    <input name="userId" type="hidden" value="${session.get('user.id')}">
+                    <input name="userId" type="hidden" value="${userId}">
 
                     <div class="control-group #{ifError 'content'} error#{/ifError}">
                         <textarea class="span7" name="content" placeholder="&{'knowledge.comment'}"></textarea>

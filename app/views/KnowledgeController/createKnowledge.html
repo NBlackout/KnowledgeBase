@@ -1,11 +1,15 @@
 #{extends 'main.html' /}
 #{set title:messages.get('title.knowledge.create') /}
 
+%{
+    Long userId = (session.get('user.id')) ? Long.parseLong(session.get('user.id')) : null;
+%}
+
 <fieldset>
     <legend>&{'title.knowledge.create'}</legend>
 
     <form id="form" class="form-horizontal" action="@{KnowledgeController.saveKnowledge()}" method="POST">
-        <input name="userId" type="hidden" value="${session.get('user.id')}">
+        <input name="userId" type="hidden" value="${userId}">
         <input name="tagIds" type="hidden">
 
         <div class="control-group#{ifError 'title'} error#{/ifError}">

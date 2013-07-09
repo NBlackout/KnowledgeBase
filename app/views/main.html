@@ -12,6 +12,12 @@
     #{script 'main.js', charset:'UTF-8' /}
 #{/set}
 
+%{
+    String returnUrl = request.url;
+    Long userId = (session.get('user.id')) ? Long.parseLong(session.get('user.id')) : null;
+    String userLogin = session.get('user.login');
+%}
+
 <html>
     <head>
         <title>#{get 'title' /}</title>
@@ -34,7 +40,7 @@
                     <ul class="nav locales">
                         #{list items:play.configuration['application.langs'].split(','), as:'locale'}
                             <li #{if locale == lang}class="active"#{/if}>
-                                <a href="@{SuperController.setLang(request.url, locale)}"><i class="flag-${locale}"></i></a>
+                                <a href="@{SuperController.setLang(returnUrl, locale)}"><i class="flag-${locale}"></i></a>
                             </li>
                         #{/list}
                     </ul>
@@ -47,20 +53,20 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">&{'navbar.knowledges'}&nbsp;<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li class="dropdown"><a href="@{KnowledgeController.showKnowledges()}">&{'navbar.knowledges.show'}</a></li>
-                                    #{if session.get('user.id')}
+                                    #{if userId}
                                         <li class="dropdown"><a href="@{KnowledgeController.createKnowledge()}">&{'navbar.knowledge.create'}</a></li>
                                     #{/if}
                                 </ul>
                             </li>
                         </ul>
 
-                        #{if session.get('user.id')}
+                        #{if userId}
                             <ul class="nav pull-right">
                                 <li class="dropdown">
-                                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">${session.get('user.login')}&nbsp;<b class="caret"></b></a>
+                                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">${userLogin}&nbsp;<b class="caret"></b></a>
                                     <div class="dropdown-menu user-dropdown-menu">
                                         <form class="navbar-form" action="@{SuperController.logOut()}" method="POST">
-                                            <input name="returnUrl" type="hidden" value="${request.url}">
+                                            <input name="returnUrl" type="hidden" value="${returnUrl}">
 
                                             <button class="btn btn-link" type="submit">&{'button.log.out'}</button>
                                         </form>
@@ -70,7 +76,7 @@
                         #{/if}
                         #{else}
                             <form class="navbar-form pull-right" action="@{SuperController.logIn()}" method="POST">
-                                <input name="returnUrl" type="hidden" value="${request.url}">
+                                <input name="returnUrl" type="hidden" value="${returnUrl}">
 
                                 <input class="input-medium" name="login" type="text" placeholder="&{'user.login'}">
                                 <input class="input-medium" name="password" type="password" placeholder="&{'user.password'}">
