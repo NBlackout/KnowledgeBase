@@ -35,7 +35,7 @@ tooltip.comment.save=Save
 knowledge.comment=Comment
 knowledge.comment.info=Added by %s the %s
 knowledge.description=Description
-knowledge.info=Added by %s the %s in %s
+knowledge.info=Added by %s the %s
 knowledge.tags=Tags
 knowledge.title=Title
 

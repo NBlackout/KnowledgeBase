@@ -3,11 +3,6 @@
 
 %{
     Long userId = (session.get('user.id')) ? Long.parseLong(session.get('user.id')) : null;
-
-    List<String> tags = new LinkedList<>();
-    for (tag in knowledge.tags.sort{it.name}) {
-        tags.add(tag.name);
-    }
 %}
 
 <fieldset>
@@ -22,7 +17,17 @@
         </div>
 
         <div class="title">${knowledge.title}</div>
-        <div class="info">&{'knowledge.info', knowledge.user.login, knowledge.createdDate.format(), tags.join(', ')}</div>
+        <div class="subtitle">
+            <span class="info">&{'knowledge.info', knowledge.user.login, knowledge.createdDate.format()}</span>
+            <span id="tags"></span>
+        </div>
+
+        <div id="selectedTags" style="display: none;">
+            #{list items:knowledge.tags, as:'tag'}
+                <span class="selectedTag" data-tag-id="&{tag.id}">${tag.name}</span>
+            #{/list}
+        </div>
+
         <div class="description well">${knowledge.description.raw().nl2br()}</div>
 
         <div class="comments">
@@ -130,6 +135,19 @@
 			}
 
 			return false;
+		});
+
+		$('#selectedTags .selectedTag').each(function(index, data) {
+			var link = $('<a>', {
+				href: '@{Application.index()}',
+				text: $(data).text()
+			});
+
+			var span = $('<span>').addClass('selectedTag');
+			span.append(link);
+
+			// Append selected tag
+			$('#tags').append(span);
 		});
 	});
 </script>

@@ -65,11 +65,23 @@ textarea[name="content"] {
     line-height: 40px;
 }
 
-.knowledge>.info {
+.knowledge>.subtitle {
     border-bottom: 1px solid #333333;
     color: #888888;
     font-size: 0.85em;
     padding-bottom: 15px;
+}
+
+.knowledge>.subtitle>#tags>.selectedTag {
+    background-color: #E0EAF1;
+    border-bottom: 1px solid #B3CEE1;
+    border-right: 1px solid #B3CEE1;
+    color: #3E6D8E;
+    margin-right: 5px;
+}
+
+.knowledge>.subtitle>#tags>.selectedTag>a {
+    cursor: pointer;
 }
 
 .knowledge>.description {
@@ -93,7 +105,7 @@ textarea[name="content"] {
     margin-top: 5px;
 }
 
-.knowledge>.comments>.comment>.info>.actions>.save, .knowledge>.comments>.comment>.info>.actions>.cancel {
+.knowledge>.comments>.comment>.info>.actions>.save,.knowledge>.comments>.comment>.info>.actions>.cancel {
     display: none;
 }
 
@@ -107,7 +119,7 @@ textarea[name="content"] {
     padding-top: 15px;
 }
 /* Tags */
-#tags {
+#form #tags {
     border: 1px solid #CCCCCC;
     border-radius: 4px;
     box-shadow: inser 0px 1px 1px rgba(0, 0, 0, 0.071);
@@ -118,28 +130,28 @@ textarea[name="content"] {
     transition: border 0.2s cubic-bezier(0, 0, 1, 1) 0, box-shadow 0.2s cubic-bezier(0, 0, 1, 1) 0px;
 }
 
-#tags.focused {
+#form #tags.focused {
     border: 1px solid rgba(82, 168, 236, 0.8);
     -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075), 0px 0px 8px rgba(82, 168, 236, 0.6);
     -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075), 0px 0px 8px rgba(82, 168, 236, 0.6);
     box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075), 0px 0px 8px rgba(82, 168, 236, 0.6);
 }
 
-#tags.error {
+#form #tags.error {
     border-color: #B94A48;
     -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);
     -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);
     box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);
 }
 
-#tags.error.focused {
+#form #tags.error.focused {
     border-color: #953B39;
     -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075), 0px 0px 6px #D59392;
     -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075), 0px 0px 6px #D59392;
     box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075), 0px 0px 6px #D59392;
 }
 
-#tags>.selectedTag {
+#form #tags>.selectedTag {
     background-color: #E0EAF1;
     border-bottom: 1px solid #B3CEE1;
     border-right: 1px solid #B3CEE1;
@@ -147,11 +159,11 @@ textarea[name="content"] {
     margin-right: 5px;
 }
 
-#tags>.selectedTag>a {
+#form #tags>.selectedTag>a {
     cursor: pointer;
 }
 
-#tags>#tag,#tags>#tag:focus {
+#form #tags>#tag,#tags>#tag:focus {
     background-color: transparent;
     border: none;
     box-shadow: none;
