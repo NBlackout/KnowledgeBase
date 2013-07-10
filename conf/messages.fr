@@ -59,6 +59,6 @@ user.password=Mot de passe
 # Errors
 error.field.required=Ce champs est requis
 error.user.email.already.exists=Adresse e-mail existante
-error.user.not.active=Utilisateur non actif
+error.user.not.activated=Utilisateur non activé
 error.user.not.found=Utilisateur non trouvé
 error.user.username.already.exists=Nom d'utilisateur existant

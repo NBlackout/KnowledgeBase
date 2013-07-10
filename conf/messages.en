@@ -59,6 +59,6 @@ user.password=Password
 # Errors
 error.field.required=This field is required
 error.user.email.already.exists=Email already exists
-error.user.not.active=User not active
+error.user.not.activated=User not activated
 error.user.not.found=User not found
 error.user.username.already.exists=Username already exists

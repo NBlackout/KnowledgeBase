@@ -17,8 +17,8 @@ public class User extends SuperModel {
 	@Column(name = "password")
 	public String password;
 
-	@Column(name = "active")
-	public Boolean active;
+	@Column(name = "activated")
+	public Boolean activated;
 
 	@Column(name = "type")
 	public String type;
