@@ -1,7 +1,10 @@
 package models;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 
 @Entity(name = "Tag")
 public class Tag extends SuperModel {
@@ -13,4 +16,7 @@ public class Tag extends SuperModel {
 
 	@Column(name = "description")
 	public String description;
+
+	@ManyToMany(mappedBy = "tags")
+	public List<Knowledge> knowledges;
 }
