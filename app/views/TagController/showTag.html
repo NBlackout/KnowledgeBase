@@ -1,0 +1,23 @@
+#{extends 'main.html' /}
+#{set title:messages.get('title.tag.show') /}
+
+%{
+    Long userId = (session.get('user.id')) ? Long.parseLong(session.get('user.id')) : null;
+    String userType = session.get('user.type');
+%}
+
+<fieldset>
+    <legend>&{'title.tag.show'}</legend>
+
+    <div class="knowledge span7 offset1">
+        <div class="actions pull-right">
+            #{if userId && userType == 'Administrator'}
+                <a class="btn btn-primary" href="@{TagController.editTag(tag.id)}">&{'button.edit'}</a>
+            #{/if}
+            #{backButton /}
+        </div>
+
+        <div class="name">${tag.name}</div>
+        <div class="description">${tag.description}</div>
+    </div>
+</fieldset>

@@ -8,12 +8,19 @@ title.knowledge.create=Ajout d'une connaissance
 title.knowledge.edit=Modification d'une connaissance
 title.knowledge.show=Affichage d'une connaissance
 title.knowledges.show=Affichage des connaissances
+title.tag.create=Ajout d'un tag
+title.tag.edit=Modification d'un tag
+title.tag.show=Affichage d'un tag
+title.tags.show=Affichage des tags
 title.user.sign.up=Inscription
 
 # Navbar
 navbar.knowledge.create=Ajouter une connaissance
 navbar.knowledges=Connaissances
 navbar.knowledges.show=Afficher les connaissances
+navbar.tag.create=Ajouter un tag
+navbar.tags=Tags
+navbar.tags.show=Afficher les tags
 
 # Buttons
 button.back=Retour
@@ -38,6 +45,10 @@ knowledge.description=Description
 knowledge.subtitle.info=Ajoutée par %s le %s sous
 knowledge.tags=Tags
 knowledge.title=Titre
+
+# Tags
+tag.name=Nom
+tag.description=Description
 
 # Users
 user.login=Identifiant

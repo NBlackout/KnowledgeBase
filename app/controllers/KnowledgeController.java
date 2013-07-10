@@ -41,7 +41,12 @@ public class KnowledgeController extends SuperController {
 
 		if (validation.hasErrors()) {
 			keepValidation();
-			createKnowledge();
+
+			if (knowledgeId != null) {
+				editKnowledge(knowledgeId);
+			} else {
+				createKnowledge();
+			}
 		}
 
 		/* Knowledge creation */

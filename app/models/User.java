@@ -13,4 +13,7 @@ public class User extends SuperModel {
 
 	@Column(name = "password")
 	public String password;
+
+	@Column(name = "type")
+	public String type;
 }

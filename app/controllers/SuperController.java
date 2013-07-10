@@ -26,6 +26,7 @@ public class SuperController extends Controller {
 		/* Add user to session */
 		session.put("user.id", user.id);
 		session.put("user.login", user.login);
+		session.put("user.type", user.type);
 
 		redirectSafely(returnUrl);
 	}
@@ -34,6 +35,7 @@ public class SuperController extends Controller {
 		/* Remove user from session */
 		session.remove("user.id");
 		session.remove("user.login");
+		session.remove("user.type");
 
 		redirectSafely(returnUrl);
 	}

@@ -16,6 +16,7 @@
     String returnUrl = request.url;
     Long userId = (session.get('user.id')) ? Long.parseLong(session.get('user.id')) : null;
     String userLogin = session.get('user.login');
+    String userType = session.get('user.type');
 %}
 
 <html>
@@ -55,6 +56,18 @@
                                     <li class="dropdown"><a href="@{KnowledgeController.showKnowledges()}">&{'navbar.knowledges.show'}</a></li>
                                     #{if userId}
                                         <li class="dropdown"><a href="@{KnowledgeController.createKnowledge()}">&{'navbar.knowledge.create'}</a></li>
+                                    #{/if}
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <ul class="nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">&{'navbar.tags'}&nbsp;<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown"><a href="@{TagController.showTags()}">&{'navbar.tags.show'}</a></li>
+                                    #{if userId && userType == 'Administrator'}
+                                        <li class="dropdown"><a href="@{TagController.createTag()}">&{'navbar.tag.create'}</a></li>
                                     #{/if}
                                 </ul>
                             </li>

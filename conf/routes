@@ -14,6 +14,12 @@ GET     /knowledges/create                      KnowledgeController.createKnowle
 GET     /knowledges/show/{knowledgeId}          KnowledgeController.showKnowledge
 GET     /knowledges/edit/{knowledgeId}          KnowledgeController.editKnowledge
 
+# Tags
+GET     /tags                                   TagController.showTags
+GET     /tags/create                            TagController.createTag
+GET     /tags/show/{tagId}                      TagController.showTag
+GET     /tags/edit/{tagId}                      TagController.editTag
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

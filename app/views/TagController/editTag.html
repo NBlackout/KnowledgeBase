@@ -1,0 +1,37 @@
+#{extends 'main.html' /}
+#{set title:messages.get('title.tag.edit') /}
+
+<fieldset>
+    <legend>&{'title.tag.edit'}</legend>
+
+    <form id="form" class="form-horizontal" action="@{TagController.saveTag()}" method="POST">
+        <input name="tagId" type="hidden" value="${tag.id}">
+
+        <div class="control-group#{ifError 'name'} error#{/ifError}">
+            <label class="control-label required" for="name">&{'tag.name'}</label>
+            <div class="controls">
+                <input id="name" class="input-xxlarge" name="name" type="text" value="${tag.name}" placeholder="&{'tag.name'}">
+                #{ifError 'name'}
+                    <span class="help-inline">#{error 'name' /}</span>
+                #{/ifError}
+            </div>
+        </div>
+
+        <div class="control-group#{ifError 'description'} error#{/ifError}">
+            <label class="control-label required" for="description">&{'tag.description'}</label>
+            <div class="controls">
+                <textarea id="description" class="input-xxlarge" name="description" placeholder="&{'tag.description'}">${tag.description}</textarea>
+                #{ifError 'description'}
+                    <span class="help-inline">#{error 'description' /}</span>
+                #{/ifError}
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                <button class="btn btn-primary" type="submit">&{'button.save'}</button>
+                #{backButton /}
+            </div>
+        </div>
+    </form>
+</fieldset>

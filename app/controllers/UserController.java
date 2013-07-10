@@ -22,6 +22,7 @@ public class UserController extends SuperController {
 		User user = new User();
 		user.login = login;
 		user.password = password;
+		user.type = "User";
 		user.save();
 
 		/* User connection */
