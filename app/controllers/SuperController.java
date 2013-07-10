@@ -3,6 +3,7 @@ package controllers;
 import models.User;
 import play.data.validation.Required;
 import play.i18n.Lang;
+import play.libs.Crypto;
 import play.mvc.Controller;
 import play.mvc.Router;
 
@@ -13,7 +14,7 @@ public class SuperController extends Controller {
 		validation.required(login).message("error.field.required");
 		validation.required(password).message("error.field.required");
 
-		User user = User.find("byLoginAndPassword", login, password).first();
+		User user = User.find("byLoginAndPassword", login, Crypto.encryptAES(password)).first();
 		if (user == null) {
 			validation.addError("login", "user.not.found");
 		}

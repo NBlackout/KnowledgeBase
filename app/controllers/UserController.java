@@ -1,5 +1,6 @@
 package controllers;
 
+import play.libs.Crypto;
 import models.User;
 
 public class UserController extends SuperController {
@@ -21,7 +22,7 @@ public class UserController extends SuperController {
 		/* User creation */
 		User user = new User();
 		user.login = login;
-		user.password = password;
+		user.password = Crypto.encryptAES(password);
 		user.type = "User";
 		user.save();
 
