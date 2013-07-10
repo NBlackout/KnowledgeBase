@@ -14,9 +14,13 @@ public class SuperController extends Controller {
 		validation.required(login).message("error.field.required");
 		validation.required(password).message("error.field.required");
 
-		User user = User.find("byLoginAndPassword", login, Crypto.encryptAES(password)).first();
+		User user = User.find((login.contains("@")) ? "byEmailAndPassword" : "byUsernameAndPassword", login, Crypto.encryptAES(password)).first();
 		if (user == null) {
-			validation.addError("login", "user.not.found");
+			validation.addError("login", "error.user.not.found");
+		}
+		
+		if (user.active == Boolean.FALSE) {
+			validation.addError("login", "error.user.not.active");
 		}
 
 		if (validation.hasErrors()) {
@@ -26,7 +30,7 @@ public class SuperController extends Controller {
 
 		/* Add user to session */
 		session.put("user.id", user.id);
-		session.put("user.login", user.login);
+		session.put("user.username", user.username);
 		session.put("user.type", user.type);
 
 		redirectSafely(returnUrl);

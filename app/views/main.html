@@ -15,7 +15,7 @@
 %{
     String returnUrl = request.url;
     Long userId = (session.get('user.id')) ? Long.parseLong(session.get('user.id')) : null;
-    String userLogin = session.get('user.login');
+    String userUsername = session.get('user.username');
     String userType = session.get('user.type');
 %}
 
@@ -76,7 +76,7 @@
                         #{if userId}
                             <ul class="nav pull-right">
                                 <li class="dropdown">
-                                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">${userLogin}&nbsp;<b class="caret"></b></a>
+                                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">${userUsername}&nbsp;<b class="caret"></b></a>
                                     <div class="dropdown-menu user-dropdown-menu">
                                         <form class="navbar-form" action="@{SuperController.logOut()}" method="POST">
                                             <input name="returnUrl" type="hidden" value="${returnUrl}">
@@ -91,7 +91,7 @@
                             <form class="navbar-form pull-right" action="@{SuperController.logIn()}" method="POST">
                                 <input name="returnUrl" type="hidden" value="${returnUrl}">
 
-                                <input class="input-medium" name="login" type="text" placeholder="&{'user.login'}">
+                                <input class="input-medium" name="login" type="text" placeholder="&{'user.login'}" value="${flash.login}">
                                 <input class="input-medium" name="password" type="password" placeholder="&{'user.password'}">
                                 <span class="controls">
                                     <button class="btn btn-primary" type="submit">&{'button.log.in'}</button>

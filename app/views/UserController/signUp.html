@@ -7,12 +7,22 @@
     <form class="form-horizontal" action="@{UserController.saveUser()}" method="POST">
         <input name="returnUrl" type="hidden" value="${returnUrl}">
 
-        <div class="control-group#{ifError 'login'} error#{/ifError}">
-            <label class="control-label required" for="login">&{'user.login'}</label>
+        <div class="control-group#{ifError 'email'} error#{/ifError}">
+            <label class="control-label required" for="email">&{'user.email'}</label>
             <div class="controls">
-                <input id="login" name="login" type="text" value="${flash.login}" placeholder="&{'user.login'}">
-                #{ifError 'login'}
-                    <span class="help-inline">#{error 'login' /}</span>
+                <input id="email" name="email" type="text" value="${flash.email}" placeholder="&{'user.email'}">
+                #{ifError 'email'}
+                    <span class="help-inline">#{error 'email' /}</span>
+                #{/ifError}
+            </div>
+        </div>
+
+        <div class="control-group#{ifError 'username'} error#{/ifError}">
+            <label class="control-label required" for="username">&{'user.username'}</label>
+            <div class="controls">
+                <input id="username" name="username" type="text" value="${flash.username}" placeholder="&{'user.username'}">
+                #{ifError 'username'}
+                    <span class="help-inline">#{error 'username' /}</span>
                 #{/ifError}
             </div>
         </div>

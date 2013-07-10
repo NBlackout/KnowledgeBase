@@ -51,9 +51,14 @@ tag.name=Nom
 tag.description=Description
 
 # Users
-user.login=Identifiant
+user.email=Adresse e-mail
+user.login=Adresse e-mail ou nom d'utilisateur 
+user.username=Nom d'utilisateur
 user.password=Mot de passe
 
 # Errors
 error.field.required=Ce champs est requis
-error.user.already.exists=Utilisateur existant
+error.user.email.already.exists=Adresse e-mail existante
+error.user.not.active=Utilisateur non actif
+error.user.not.found=Utilisateur non trouvé
+error.user.username.already.exists=Nom d'utilisateur existant

@@ -18,7 +18,7 @@
 
         <div class="title">${knowledge.title}</div>
         <div class="subtitle">
-            <span class="info">&{'knowledge.subtitle.info', knowledge.user.login, knowledge.createdDate.format()}</span>
+            <span class="info">&{'knowledge.subtitle.info', knowledge.user.username, knowledge.createdDate.format()}</span>
             <span id="tags"></span>
         </div>
 
@@ -34,7 +34,7 @@
             #{list items:comments, as:'comment'}
                 <div class="comment">
                     <div class="info">
-                        <span>&{'knowledge.comment.info', comment.user.login, comment.createdDate.format()}</span>
+                        <span>&{'knowledge.comment.info', comment.user.username, comment.createdDate.format()}</span>
 
                         <div class="actions pull-right">
                             #{if comment.user.id == userId}
