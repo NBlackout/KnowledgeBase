@@ -1,0 +1,7 @@
+&{'mail.activation.body.welcome', userName}
+
+&{'mail.activation.body.registration', userName}
+&{'mail.activation.body.activation'}
+&{'mail.activation.body.link'}
+
+<a href="@@{UserController.activateUser(userEmail)}">@@{UserController.activateUser(userEmail)}</a>

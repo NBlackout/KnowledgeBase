@@ -1,0 +1,9 @@
+<html>
+    <body>
+        <div style="margin-bottom: 20px;">&{'mail.activation.body.welcome', userName}</div>
+        <div style="margin-bottom: 5px;">&{'mail.activation.body.registration', userName}</div>
+        <div style="margin-bottom: 10px;">&{'mail.activation.body.activation'}</div>
+        <div>&{'mail.activation.body.link'}</div>
+        <a href="@@{UserController.activateUser(userEmail)}">@@{UserController.activateUser(userEmail)}</a>
+    </body>
+</html>

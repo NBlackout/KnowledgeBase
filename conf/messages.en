@@ -56,6 +56,13 @@ user.login=Email or username
 user.username=Username
 user.password=Password
 
+# Mails
+mail.activation.subject=Account registration
+mail.activation.body.welcome=Welcome %s,
+mail.activation.body.registration=You have created an account with the username %s.
+mail.activation.body.activation=You must validate your account before continuing.
+mail.activation.body.link=To do this, please click on the following link :
+
 # Errors
 error.field.required=This field is required
 error.user.email.already.exists=Email already exists

@@ -52,9 +52,16 @@ tag.description=Description
 
 # Users
 user.email=Adresse e-mail
-user.login=Adresse e-mail ou nom d'utilisateur 
+user.login=Adresse e-mail ou nom d'utilisateur
 user.username=Nom d'utilisateur
 user.password=Mot de passe
+
+# Mails
+mail.activation.subject=Activation de votre compte
+mail.activation.body.welcome=Bienvenue %s,
+mail.activation.body.registration=Vous venez de créer un compte avec le nom d'utilisateur %s.
+mail.activation.body.activation=Vous devez valider votre compte avant de pouvoir continuer.
+mail.activation.body.link=Pour ce faire, veuillez cliquer sur le lien suivant :
 
 # Errors
 error.field.required=Ce champs est requis
