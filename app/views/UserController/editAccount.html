@@ -1,16 +1,17 @@
 #{extends 'main.html' /}
-#{set title:messages.get('title.user.sign.up') /}
+#{set title:messages.get('title.user.account.edit') /}
 
 <fieldset>
-    <legend>&{'title.user.sign.up'}</legend>
+    <legend>&{'title.user.account.edit'}</legend>
 
-    <form class="form-horizontal" action="@{UserController.saveUser()}" method="POST">
+    <form class="form-horizontal" action="@{UserController.saveAccount()}" method="POST">
         <input name="returnUrl" type="hidden" value="${returnUrl}">
+        <input name="userId" type="hidden" value="${user.id}">
 
         <div class="control-group#{ifError 'email'} error#{/ifError}">
             <label class="control-label required" for="email">&{'user.email'}</label>
             <div class="controls">
-                <input id="email" name="email" type="text" value="${flash.email}" placeholder="&{'user.email'}">
+                <input id="email" name="email" type="text" value="${user.email}" placeholder="&{'user.email'}">
                 #{ifError 'email'}
                     <span class="help-inline">#{error 'email' /}</span>
                 #{/ifError}
@@ -20,19 +21,29 @@
         <div class="control-group#{ifError 'username'} error#{/ifError}">
             <label class="control-label required" for="username">&{'user.username'}</label>
             <div class="controls">
-                <input id="username" name="username" type="text" value="${flash.username}" placeholder="&{'user.username'}">
+                <input id="username" name="username" type="text" value="${user.username}" placeholder="&{'user.username'}">
                 #{ifError 'username'}
                     <span class="help-inline">#{error 'username' /}</span>
                 #{/ifError}
             </div>
         </div>
 
-        <div class="control-group#{ifError 'password'} error#{/ifError}">
-            <label class="control-label required" for="password">&{'user.password'}</label>
+        <div class="control-group#{ifError 'passwordOld'} error#{/ifError}">
+            <label class="control-label required" for="passwordOld">&{'user.password.old'}</label>
             <div class="controls">
-                <input id="password" name="password" type="password" placeholder="&{'user.password'}">
-                #{ifError 'password'}
-                    <span class="help-inline">#{error 'password' /}</span>
+                <input id="passwordOld" name="passwordOld" type="password" placeholder="&{'user.password.old'}">
+                #{ifError 'passwordOld'}
+                    <span class="help-inline">#{error 'passwordOld' /}</span>
+                #{/ifError}
+            </div>
+        </div>
+
+        <div class="control-group#{ifError 'passwordNew'} error#{/ifError}">
+            <label class="control-label required" for="passwordNew">&{'user.password.new'}</label>
+            <div class="controls">
+                <input id="passwordNew" name="passwordNew" type="password" placeholder="&{'user.password.new'}">
+                #{ifError 'passwordNew'}
+                    <span class="help-inline">#{error 'passwordNew' /}</span>
                 #{/ifError}
             </div>
         </div>
@@ -49,7 +60,7 @@
 
         <div class="control-group">
             <div class="controls">
-                <button class="btn btn-primary" type="submit">&{'button.create'}</button>
+                <button class="btn btn-primary" type="submit">&{'button.save'}</button>
                 #{backButton /}
             </div>
         </div>

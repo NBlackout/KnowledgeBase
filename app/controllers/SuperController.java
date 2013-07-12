@@ -19,7 +19,7 @@ public class SuperController extends Controller {
 			validation.addError("login", "error.user.not.found");
 		}
 
-		if (user.activated == Boolean.FALSE) {
+		if (user != null && user.activated == Boolean.FALSE) {
 			validation.addError("login", "error.user.not.activated");
 		}
 

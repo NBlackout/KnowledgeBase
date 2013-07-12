@@ -12,6 +12,7 @@ title.tag.create=Adding a tag
 title.tag.edit=Editing a tag
 title.tag.show=Displaying tag
 title.tags.show=Displaying tags
+title.user.account.edit=Editing your account
 title.user.sign.up=Signing up
 
 # Navbar
@@ -21,6 +22,7 @@ navbar.knowledges.show=Display knowledges
 navbar.tag.create=Add tag
 navbar.tags=Tags
 navbar.tags.show=Display tags
+navbar.user.account.edit=Edit your account
 
 # Buttons
 button.back=Back
@@ -55,6 +57,9 @@ user.email=Email
 user.login=Email or username
 user.username=Username
 user.password=Password
+user.password.new=New password
+user.password.old=Old password
+user.password.retype=Retype password
 
 # Mails
 mail.activation.subject=Account registration
@@ -68,4 +73,6 @@ error.field.required=This field is required
 error.user.email.already.exists=Email already exists
 error.user.not.activated=User not activated
 error.user.not.found=User not found
+error.user.password.wrong=Wrong password
+error.user.passwords.not.equals=The two passwords must be equals
 error.user.username.already.exists=Username already exists

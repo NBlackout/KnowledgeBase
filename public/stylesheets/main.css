@@ -16,6 +16,7 @@ textarea[name="content"] {
 .icon-cancel {
     background-position: -312px 0px;
 }
+
 /* Navbar */
 .navbar {
     margin-bottom: 20px;
@@ -33,9 +34,12 @@ textarea[name="content"] {
     min-width: 0px;
 }
 
+.navbar .user-dropdown-menu .divider {
+    margin: 1px;
+}
+
 .navbar .user-dropdown-menu .btn {
     float: right;
-    margin-right: 5px;
 }
 
 /* Flag icons */

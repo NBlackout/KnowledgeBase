@@ -13,8 +13,8 @@ public class Mail extends Mailer {
 		setFrom(Play.configuration.getProperty("mail.from"));
 		addRecipient(user.email);
 
-		String userName = user.username;
+		String userUsername = user.username;
 		String userEmail = Crypto.encryptAES(user.email);
-		send(userName, userEmail);
+		send(userUsername, userEmail);
 	}
 }
