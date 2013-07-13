@@ -17,6 +17,7 @@
     Long userId = (session.get('user.id')) ? Long.parseLong(session.get('user.id')) : null;
     String userUsername = session.get('user.username');
     String userType = session.get('user.type');
+    String userLocation = session.get('user.location');
 %}
 
 <html>
@@ -76,7 +77,7 @@
                         #{if userId}
                             <ul class="nav pull-right">
                                 <li class="dropdown">
-                                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">${userUsername}&nbsp;<b class="caret"></b></a>
+                                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">${userUsername}&nbsp;[${userLocation}]&nbsp;<b class="caret"></b></a>
                                     <ul class="dropdown-menu user-dropdown-menu">
                                         <li class="dropdown"><a href="@{UserController.editAccount()}">&{'navbar.user.account.edit'}</a></li>
                                         <li class="divider"></li>
