@@ -4,6 +4,10 @@ fieldset {
 }
 
 /* Text areas */
+textarea {
+    resize: none;
+}
+
 textarea[name="description"] {
     height: 200px;
 }
