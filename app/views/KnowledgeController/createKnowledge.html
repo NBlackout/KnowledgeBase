@@ -67,7 +67,7 @@
 		var buildTag = function(tag) {
 			var removeTag = buildActionIcon('icon-remove');
 
-			var selectedTag = $('<span>').addClass('selectedTag').attr('data-tag-id', tag.id);
+			var selectedTag = $('<span>').addClass('selectedTag').attr('title', tag.description).attr('data-tag-id', tag.id);
 			selectedTag.append(tag.name);
 			selectedTag.append(removeTag);
 

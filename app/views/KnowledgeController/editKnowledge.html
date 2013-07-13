@@ -48,7 +48,7 @@
 
         <div id="selectedTags" style="display: none;">
             #{list items:knowledge.tags, as:'tag'}
-                <span class="selectedTag" data-tag-id="&{tag.id}">${tag.name}</span>
+                <span class="selectedTag" title="${tag.description}" data-tag-id="&{tag.id}">${tag.name}</span>
             #{/list}
         </div>
 
@@ -76,7 +76,7 @@
 		var buildTag = function(tag) {
 			var removeTag = buildActionIcon('icon-remove');
 
-			var selectedTag = $('<span>').addClass('selectedTag').attr('data-tag-id', tag.id);
+			var selectedTag = $('<span>').addClass('selectedTag').attr('title', tag.description).attr('data-tag-id', tag.id);
 			selectedTag.append(tag.name);
 			selectedTag.append(removeTag);
 

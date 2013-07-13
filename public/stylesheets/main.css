@@ -160,6 +160,7 @@ textarea[name="content"] {
     border-bottom: 1px solid #B3CEE1;
     border-right: 1px solid #B3CEE1;
     color: #3E6D8E;
+    cursor: help;
     margin-right: 5px;
 }
 
