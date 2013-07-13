@@ -7,6 +7,8 @@ import javax.persistence.MappedSuperclass;
 
 import play.db.jpa.GenericModel;
 
+import com.google.gson.annotations.Expose;
+
 @MappedSuperclass
 public class SuperModel extends GenericModel {
 
@@ -14,6 +16,7 @@ public class SuperModel extends GenericModel {
 
 	@Id
 	@GeneratedValue
+	@Expose
 	@Column(name = "id")
 	public Long id;
 }
