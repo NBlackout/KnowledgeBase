@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.PreRemove;
 
 import com.google.gson.annotations.Expose;
 
@@ -23,4 +24,12 @@ public class Tag extends SuperModel {
 
 	@ManyToMany(mappedBy = "tags")
 	public List<Knowledge> knowledges;
+
+	@PreRemove
+	public void preRemove() {
+		for (Knowledge knowledge : knowledges) {
+			knowledge.tags.remove(this);
+			knowledge.save();
+		}
+	}
 }

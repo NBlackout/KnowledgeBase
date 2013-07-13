@@ -13,6 +13,7 @@
         <div class="actions pull-right">
             #{if userId && userType == 'Administrator'}
                 <a class="btn btn-primary" href="@{TagController.editTag(tag.id)}">&{'button.edit'}</a>
+                <a id="remove" class="btn btn-danger" href="@{TagController.removeTag(tag.id)}">&{'button.remove'}</a>
             #{/if}
             #{backButton /}
         </div>
@@ -21,3 +22,11 @@
         <div class="description">${tag.description}</div>
     </div>
 </fieldset>
+
+<script type="text/javascript">
+	$(function() {
+		$('#remove').click(function() {
+			return confirm('&{"alert.tag.remove.confirm"}');
+		});
+	});
+</script>

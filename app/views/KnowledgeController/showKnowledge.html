@@ -12,6 +12,7 @@
         <div class="actions pull-right">
             #{if knowledge.user.id == userId}
                 <a class="btn btn-primary" href="@{KnowledgeController.editKnowledge(knowledge.id)}">&{'button.edit'}</a>
+                <a id="remove" class="btn btn-danger" href="@{KnowledgeController.removeKnowledge(knowledge.id)}">&{'button.remove'}</a>
             #{/if}
             #{backButton /}
         </div>
@@ -95,6 +96,10 @@
 
 <script type="text/javascript">
 	$(function() {
+		$('#remove').click(function() {
+			return confirm('&{"alert.knowledge.remove.confirm"}');
+		});
+
 		$('.comment .info .actions a').click(function() {
 			var action = $(this);
 

@@ -36,6 +36,21 @@ public class TagController extends SuperController {
 		renderJSON(gson.toJson(tags));
 	}
 
+	public static void removeTag(Long tagId) {
+		if (!session.contains("user.id")) {
+			Application.index();
+		}
+
+		if (!session.contains("user.type") || !session.get("user.type").equals("Administrator")) {
+			Application.index();
+		}
+
+		Tag tag = Tag.findById(tagId);
+		tag.delete();
+
+		showTags();
+	}
+
 	public static void saveTag(Long tagId, String name, String description) {
 		/* Parameters validation */
 		validation.required(name).message("error.field.required");

@@ -31,6 +31,7 @@ button.edit=Edit
 button.log.in=Log in
 button.log.out=Log out
 button.publish=Publish
+button.remove=Remove
 button.save=Save
 button.sign.up=Sign up
 
@@ -67,6 +68,10 @@ mail.activation.body.welcome=Welcome %s,
 mail.activation.body.registration=You have created an account with the username %s.
 mail.activation.body.activation=You must validate your account before continuing.
 mail.activation.body.link=To do this, please click on the following link :
+
+# Alerts
+alert.knowledge.remove.confirm=You sure want to remove this knowledge ?
+alert.tag.remove.confirm=You sure want to remove this tag ?
 
 # Errors
 error.field.required=This field is required

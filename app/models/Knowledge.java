@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.PreRemove;
 
 @Entity(name = "Knowledge")
 public class Knowledge extends SuperModel {
@@ -31,4 +33,14 @@ public class Knowledge extends SuperModel {
 	@ManyToMany
 	@JoinTable(name = "Knowledge_Tag", joinColumns = { @JoinColumn(name = "knowledgeId") }, inverseJoinColumns = { @JoinColumn(name = "tagId") })
 	public List<Tag> tags;
+
+	@OneToMany(mappedBy = "knowledge")
+	public List<Comment> comments;
+
+	@PreRemove
+	public void preRemove() {
+		for (Comment comment : comments) {
+			comment.delete();
+		}
+	}
 }

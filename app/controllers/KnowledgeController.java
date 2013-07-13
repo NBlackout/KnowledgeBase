@@ -33,6 +33,21 @@ public class KnowledgeController extends SuperController {
 		render(knowledge);
 	}
 
+	public static void removeKnowledge(Long knowledgeId) {
+		if (!session.contains("user.id")) {
+			Application.index();
+		}
+
+		Knowledge knowledge = Knowledge.findById(knowledgeId);
+		if (knowledge.user.id != Long.parseLong(session.get("user.id"))) {
+			Application.index();
+		}
+
+		knowledge.delete();
+
+		showKnowledges();
+	}
+
 	public static void saveKnowledge(Long knowledgeId, @Required Long userId, String title, String description, @As(",") List<Long> tagIds) {
 		/* Parameters validation */
 		validation.required(title).message("error.field.required");
