@@ -61,12 +61,12 @@ textarea[name="content"] {
 
 /* Knowledge */
 .knowledge>.actions {
-    line-height: 40px;
+    line-height: 45px;
 }
 
 .knowledge>.title {
     font-size: 2em;
-    line-height: 40px;
+    line-height: 45px;
 }
 
 .knowledge>.subtitle {
@@ -122,6 +122,7 @@ textarea[name="content"] {
     border-top: 1px solid #333333;
     padding-top: 15px;
 }
+
 /* Tags */
 #form #tags {
     border: 1px solid #CCCCCC;
@@ -174,6 +175,21 @@ textarea[name="content"] {
     box-shadow: none;
     padding: 0px;
     vertical-align: text-bottom;
+}
+
+.tag>.actions {
+    line-height: 45px;
+}
+
+.tag .name {
+    font-size: 1.4em;
+    line-height: 45px;
+}
+
+.tag .description {
+    font-style: italic;
+    text-indent: 4em;
+    text-align: justify;
 }
 
 /* Suggestions */
