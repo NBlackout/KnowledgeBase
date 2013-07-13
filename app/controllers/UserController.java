@@ -4,7 +4,6 @@ import models.User;
 import notifiers.Mail;
 
 import org.apache.commons.mail.EmailException;
-import org.h2.util.StringUtils;
 
 import play.libs.Crypto;
 
