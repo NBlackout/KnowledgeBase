@@ -12,14 +12,12 @@ public class UserController extends SuperController {
 	public static void activateUser(String activationToken) {
 		User user = User.find("byEmail", Crypto.decryptAES(activationToken)).first();
 
-		if (user != null) {
+		if (user != null && user.activated == Boolean.FALSE) {
 			user.activated = Boolean.TRUE;
 			user.save();
 
 			/* Add user to session */
-			session.put("user.id", user.id);
-			session.put("user.username", user.username);
-			session.put("user.type", user.type);
+			updateSession(user);
 		}
 
 		Application.index();

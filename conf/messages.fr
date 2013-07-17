@@ -64,7 +64,7 @@ user.password.retype=Retaper le mot de passe
 
 # Mails
 mail.activation.subject=Activation de votre compte
-mail.activation.body.welcome=Bienvenue %s,
+mail.activation.body.welcome=Bienvenue,
 mail.activation.body.registration=Vous venez de créer un compte avec le nom d'utilisateur %s.
 mail.activation.body.activation=Vous devez valider votre compte avant de pouvoir continuer.
 mail.activation.body.link=Pour ce faire, veuillez cliquer sur le lien suivant :

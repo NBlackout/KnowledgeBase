@@ -64,7 +64,7 @@ user.password.retype=Retype password
 
 # Mails
 mail.activation.subject=Account registration
-mail.activation.body.welcome=Welcome %s,
+mail.activation.body.welcome=Welcome,
 mail.activation.body.registration=You have created an account with the username %s.
 mail.activation.body.activation=You must validate your account before continuing.
 mail.activation.body.link=To do this, please click on the following link :

@@ -10,7 +10,7 @@ public class Mail extends Mailer {
 
 	public static void sendActivationEmail(User user) {
 		setSubject(Messages.get("mail.activation.subject"));
-		setFrom(Play.configuration.getProperty("mail.from"));
+		setFrom(Play.configuration.getProperty("mail.address.from"));
 		addRecipient(user.email);
 
 		String userUsername = user.username;

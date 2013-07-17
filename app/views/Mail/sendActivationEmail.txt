@@ -1,4 +1,4 @@
-&{'mail.activation.body.welcome', userUsername}
+&{'mail.activation.body.welcome'}
 
 &{'mail.activation.body.registration', userUsername}
 &{'mail.activation.body.activation'}
