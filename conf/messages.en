@@ -18,6 +18,7 @@ title.user.sign.up=Signing up
 # Navbar
 navbar.knowledge.create=Add knowledge
 navbar.knowledges=Knowledges
+navbar.knowledges.export=Export knowledges
 navbar.knowledges.show=Display knowledges
 navbar.tag.create=Add tag
 navbar.tags=Tags

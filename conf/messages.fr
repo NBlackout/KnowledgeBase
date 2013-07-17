@@ -18,6 +18,7 @@ title.user.sign.up=Inscription
 # Navbar
 navbar.knowledge.create=Ajouter une connaissance
 navbar.knowledges=Connaissances
+navbar.knowledges.export=Exporter les connaissances
 navbar.knowledges.show=Afficher les connaissances
 navbar.tag.create=Ajouter un tag
 navbar.tags=Tags

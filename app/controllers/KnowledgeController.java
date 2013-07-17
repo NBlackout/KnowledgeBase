@@ -1,5 +1,7 @@
 package controllers;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
 
@@ -31,6 +33,39 @@ public class KnowledgeController extends SuperController {
 		}
 
 		render(knowledge);
+	}
+
+	public static void exportKnowledges() throws IOException {
+		StringBuilder builder = new StringBuilder();
+
+		/* Headers */
+		builder.append("Title");
+		builder.append(";");
+		builder.append("Description");
+		builder.append(";");
+		builder.append("Tags");
+		builder.append(System.getProperty("line.separator"));
+
+		/* Lines */
+		for (Knowledge knowledge : Knowledge.<Knowledge> findAll()) {
+			builder.append(knowledge.title);
+			builder.append(";");
+			builder.append(knowledge.description.replace(System.getProperty("line.separator"), ""));
+			builder.append(";");
+
+			for (int i = 0; i < knowledge.tags.size(); i++) {
+				builder.append(knowledge.tags.get(i).name);
+				if (i < knowledge.tags.size() - 1) {
+					builder.append(",");
+				}
+			}
+
+			builder.append(System.getProperty("line.separator"));
+		}
+
+		response.setContentTypeIfNotSet("text/csv");
+		response.setHeader("Content-Disposition", "attachment;filename=knowledges.csv");
+		renderBinary(new ByteArrayInputStream(builder.toString().getBytes()));
 	}
 
 	public static void removeKnowledge(Long knowledgeId) {

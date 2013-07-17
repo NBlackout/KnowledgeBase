@@ -10,6 +10,7 @@ GET     /users/signUp                           UserController.signUp
 
 # Knowledges
 GET     /knowledges                             KnowledgeController.showKnowledges
+GET     /knowledges/export                      KnowledgeController.exportKnowledges
 GET     /knowledges/create                      KnowledgeController.createKnowledge
 GET     /knowledges/show/{knowledgeId}          KnowledgeController.showKnowledge
 GET     /knowledges/edit/{knowledgeId}          KnowledgeController.editKnowledge
