@@ -49,27 +49,31 @@ public class UserController extends SuperController {
 		validation.required(passwordNew).message("error.field.required");
 		validation.required(passwordRetype).message("error.field.required");
 
-		User user = User.findById(userId);
-		if (!user.password.equals(Crypto.encryptAES(passwordOld))) {
-			validation.addError("passwordOld", "error.user.password.wrong");
+		if (!validation.hasErrors()) {
+			User user = User.findById(userId);
+			if (!user.password.equals(Crypto.encryptAES(passwordOld))) {
+				validation.addError("passwordOld", "error.user.password.wrong");
+
+				if (!validation.hasErrors()) {
+					if (!passwordNew.equals(passwordRetype)) {
+						validation.addError("passwordRetype", "error.user.passwords.not.equals");
+
+						if (!validation.hasErrors()) {
+							/* Account modification */
+							user.email = email;
+							user.username = username;
+							user.password = Crypto.encryptAES(passwordNew);
+							user.save();
+
+							Application.index();
+						}
+					}
+				}
+			}
 		}
 
-		if (!passwordNew.equals(passwordRetype)) {
-			validation.addError("passwordRetype", "error.user.passwords.not.equals");
-		}
-
-		if (validation.hasErrors()) {
-			keepValidation();
-			editAccount();
-		}
-
-		/* Account modification */
-		user.email = email;
-		user.username = username;
-		user.password = Crypto.encryptAES(passwordNew);
-		user.save();
-
-		Application.index();
+		keepValidation();
+		editAccount();
 	}
 
 	public static void saveUser(String email, String username, String password, String passwordRetype) throws EmailException {
@@ -79,36 +83,42 @@ public class UserController extends SuperController {
 		validation.required(password).message("error.field.required");
 		validation.required(passwordRetype).message("error.field.required");
 
-		if (User.count("byEmail", email) != 0) {
-			validation.addError("email", "error.user.email.already.exists");
+		if (!validation.hasErrors()) {
+			if (User.count("byEmail", email) != 0) {
+				validation.addError("email", "error.user.email.already.exists");
+
+				if (!validation.hasErrors()) {
+					if (User.count("byUsername", username) != 0) {
+						validation.addError("username", "error.user.username.already.exists");
+
+						if (!validation.hasErrors()) {
+							if (!password.equals(passwordRetype)) {
+								validation.addError("passwordRetype", "error.user.passwords.not.equals");
+
+								if (!validation.hasErrors()) {
+									/* User creation */
+									User user = new User();
+									user.email = email;
+									user.username = username;
+									user.password = Crypto.encryptAES(password);
+									user.activated = Boolean.FALSE;
+									user.type = "User";
+									user.save();
+
+									/* Activation mail sending */
+									Mail.sendActivationEmail(user);
+
+									registrationSummary(user);
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 
-		if (User.count("byUsername", username) != 0) {
-			validation.addError("username", "error.user.username.already.exists");
-		}
-
-		if (!password.equals(passwordRetype)) {
-			validation.addError("passwordRetype", "error.user.passwords.not.equals");
-		}
-
-		if (validation.hasErrors()) {
-			keepValidation();
-			signUp();
-		}
-
-		/* User creation */
-		User user = new User();
-		user.email = email;
-		user.username = username;
-		user.password = Crypto.encryptAES(password);
-		user.activated = Boolean.FALSE;
-		user.type = "User";
-		user.save();
-
-		/* Activation mail sending */
-		Mail.sendActivationEmail(user);
-
-		//registrationSummary(user);
+		keepValidation();
+		signUp();
 	}
 
 	public static void signUp() {

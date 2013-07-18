@@ -22,23 +22,27 @@ public class SuperController extends Controller {
 		validation.required(login).message("error.field.required");
 		validation.required(password).message("error.field.required");
 
-		User user = User.find((login.contains("@")) ? "byEmailAndPassword" : "byUsernameAndPassword", login, Crypto.encryptAES(password)).first();
-		if (user == null) {
-			validation.addError("login", "error.user.not.found");
+		if (!validation.hasErrors()) {
+			User user = User.find((login.contains("@")) ? "byEmailAndPassword" : "byUsernameAndPassword", login, Crypto.encryptAES(password)).first();
+			if (user == null) {
+				validation.addError("login", "error.user.not.found");
+			}
+
+			if (!validation.hasErrors()) {
+				if (user != null && user.activated == Boolean.FALSE) {
+					validation.addError("login", "error.user.not.activated");
+				}
+
+				if (!validation.hasErrors()) {
+					/* Add user to session */
+					updateSession(user);
+
+					redirectSafely(returnUrl);
+				}
+			}
 		}
 
-		if (user != null && user.activated == Boolean.FALSE) {
-			validation.addError("login", "error.user.not.activated");
-		}
-
-		if (validation.hasErrors()) {
-			keepValidation();
-			redirectSafely(returnUrl);
-		}
-
-		/* Add user to session */
-		updateSession(user);
-
+		keepValidation();
 		redirectSafely(returnUrl);
 	}
 
