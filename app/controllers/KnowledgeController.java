@@ -104,7 +104,7 @@ public class KnowledgeController extends SuperController {
 		knowledge.user = User.findById(userId);
 		knowledge.title = title;
 		knowledge.description = description;
-		knowledge.createdDate = Calendar.getInstance().getTime();
+		knowledge.createdDate = (knowledgeId != null) ? knowledge.createdDate : Calendar.getInstance().getTime();
 		knowledge.tags = Tag.find("id in :tagIds").bind("tagIds", tagIds).fetch();
 		knowledge.save();
 
