@@ -7,6 +7,7 @@ GET     /                                       Application.index
 
 # Users
 GET     /users/signUp                           UserController.signUp
+GET     /user/account                           UserController.editAccount
 
 # Knowledges
 GET     /knowledges                             KnowledgeController.showKnowledges

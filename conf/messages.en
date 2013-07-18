@@ -13,6 +13,7 @@ title.tag.edit=Editing a tag
 title.tag.show=Displaying tag
 title.tags.show=Displaying tags
 title.user.account.edit=Editing your account
+title.user.registration.summary=Registration summary
 title.user.sign.up=Signing up
 
 # Navbar
@@ -62,6 +63,8 @@ user.password=Password
 user.password.new=New password
 user.password.old=Old password
 user.password.retype=Retype password
+user.registration.summary.header=%s,
+user.registration.summary.body=An email has been sent to you at %s. Please refer to it in order to complete your registration.
 
 # Mails
 mail.activation.subject=Account registration

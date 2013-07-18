@@ -1,0 +1,9 @@
+#{extends 'main.html' /}
+#{set title:messages.get('title.user.registration.summary') /}
+
+<fieldset>
+    <legend>&{'title.user.registration.summary'}</legend>
+
+    <div style="margin-bottom: 20px;">&{'user.registration.summary.header', user.username}</div>
+    <div>&{'user.registration.summary.body', user.email}</div>
+</fieldset>

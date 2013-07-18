@@ -29,7 +29,16 @@ public class UserController extends SuperController {
 		}
 
 		User user = User.findById(Long.parseLong(session.get("user.id")));
+
 		render(user);
+	}
+
+	public static void registrationSummary(User user) {
+		if (user.activated == true) {
+			Application.index();
+		}
+
+		render();
 	}
 
 	public static void saveAccount(String returnUrl, Long userId, String email, String username, String passwordOld, String passwordNew, String passwordRetype) {
@@ -99,7 +108,7 @@ public class UserController extends SuperController {
 		/* Activation mail sending */
 		Mail.sendActivationEmail(user);
 
-		Application.index();
+		//registrationSummary(user);
 	}
 
 	public static void signUp() {
