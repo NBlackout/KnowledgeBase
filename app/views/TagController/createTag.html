@@ -5,7 +5,7 @@
     <legend>&{'title.tag.create'}</legend>
 
     <form id="form" class="form-horizontal" action="@{TagController.saveTag()}" method="POST">
-        <div class="control-group#{ifError 'title'} error#{/ifError}">
+        <div class="control-group#{ifError 'name'} error#{/ifError}">
             <label class="control-label required" for="name">&{'tag.name'}</label>
             <div class="controls">
                 <input id="name" class="input-xxlarge" name="name" type="text" value="${flash.name}" placeholder="&{'tag.name'}">

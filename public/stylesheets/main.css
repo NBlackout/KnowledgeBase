@@ -3,6 +3,10 @@ fieldset {
     padding-top: 20px;
 }
 
+fieldset>legend {
+    margin-bottom: 0px;
+}
+
 /* Text areas */
 textarea {
     resize: none;
