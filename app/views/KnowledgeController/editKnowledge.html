@@ -33,15 +33,15 @@
             </div>
         </div>
 
-        <div class="control-group#{ifError 'description'} error#{/ifError}">
+        <div class="control-group#{ifError 'tagIds'} error#{/ifError}">
             <label class="control-label required" for="tag">&{'knowledge.tags'}</label>
             <div class="controls">
-                <div id="tags" class="input-xxlarge">
+                <div id="tags" class="input-xxlarge#{ifError 'tagIds'} error#{/ifError}">
                     <input id="tag" class="input-xxlarge" type="text" placeholder="&{'knowledge.tags'}">
                     <div id="suggestions"></div>
                 </div>
-                #{ifError 'description'}
-                    <span class="help-inline">#{error 'description' /}</span>
+                #{ifError 'tagIds'}
+                    <span class="help-inline">#{error 'tagIds' /}</span>
                 #{/ifError}
             </div>
         </div>
@@ -158,7 +158,7 @@
 
 				$('#form [name="tagIds"]').val(tagIds);
 			} else {
-				return false;
+				$('#form [name="tagIds"]').attr('disabled', 'disabled');
 			}
 		});
 
