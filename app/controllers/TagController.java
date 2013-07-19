@@ -56,23 +56,23 @@ public class TagController extends SuperController {
 		validation.required(name).message("error.field.required");
 		validation.required(description).message("error.field.required");
 
-		if (validation.hasErrors()) {
-			keepValidation();
+		if (!validation.hasErrors()) {
+			/* Tag creation */
+			Tag tag = (tagId != null) ? Tag.<Tag> findById(tagId) : new Tag();
+			tag.name = name;
+			tag.description = description;
+			tag.save();
 
-			if (tagId != null) {
-				editTag(tagId);
-			} else {
-				createTag();
-			}
+			showTag(tag.id);
 		}
 
-		/* Tag creation */
-		Tag tag = (tagId != null) ? Tag.<Tag> findById(tagId) : new Tag();
-		tag.name = name;
-		tag.description = description;
-		tag.save();
+		keepValidation();
 
-		showTag(tag.id);
+		if (tagId != null) {
+			editTag(tagId);
+		} else {
+			createTag();
+		}
 	}
 
 	public static void showTag(Long tagId) {

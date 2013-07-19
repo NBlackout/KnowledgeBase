@@ -80,6 +80,7 @@ alert.tag.remove.confirm=You sure want to remove this tag ?
 # Errors
 error.field.required=This field is required
 error.user.email.already.exists=Email already exists
+error.user.email.format=Email format is invalid
 error.user.not.activated=User not activated
 error.user.not.found=User not found
 error.user.password.wrong=Wrong password

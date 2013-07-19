@@ -89,26 +89,25 @@ public class KnowledgeController extends SuperController {
 		validation.required(description).message("error.field.required");
 		validation.required(tagIds).message("error.field.required");
 
-		if (validation.hasErrors()) {
-			keepValidation();
+		if (!validation.hasErrors()) {
+			/* Knowledge creation */
+			Knowledge knowledge = (knowledgeId != null) ? Knowledge.<Knowledge> findById(knowledgeId) : new Knowledge();
+			knowledge.user = User.findById(userId);
+			knowledge.title = title;
+			knowledge.description = description;
+			knowledge.createdDate = (knowledgeId != null) ? knowledge.createdDate : Calendar.getInstance().getTime();
+			knowledge.tags = Tag.find("id in :tagIds").bind("tagIds", tagIds).fetch();
+			knowledge.save();
 
-			if (knowledgeId != null) {
-				editKnowledge(knowledgeId);
-			} else {
-				createKnowledge();
-			}
+			showKnowledge(knowledge.id);
+			keepValidation();
 		}
 
-		/* Knowledge creation */
-		Knowledge knowledge = (knowledgeId != null) ? Knowledge.<Knowledge> findById(knowledgeId) : new Knowledge();
-		knowledge.user = User.findById(userId);
-		knowledge.title = title;
-		knowledge.description = description;
-		knowledge.createdDate = (knowledgeId != null) ? knowledge.createdDate : Calendar.getInstance().getTime();
-		knowledge.tags = Tag.find("id in :tagIds").bind("tagIds", tagIds).fetch();
-		knowledge.save();
-
-		showKnowledge(knowledge.id);
+		if (knowledgeId != null) {
+			editKnowledge(knowledgeId);
+		} else {
+			createKnowledge();
+		}
 	}
 
 	public static void showKnowledge(Long knowledgeId) {
