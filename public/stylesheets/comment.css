@@ -1,0 +1,20 @@
+.comment {
+    border-top: 1px dotted #AAAAAA;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.comment .info {
+    color: #888888;
+    font-size: 0.8em;
+    margin-top: 5px;
+}
+
+.comment .actions .save,.comment .actions .cancel {
+    display: none;
+}
+
+.comment .content-textarea {
+    display: none;
+    height: 80px;
+}

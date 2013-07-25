@@ -105,27 +105,6 @@ textarea[name="content"] {
     margin-top: 30px;
 }
 
-.knowledge>.comments>.comment {
-    border-top: 1px dotted #AAAAAA;
-    margin-bottom: 10px;
-    position: relative;
-}
-
-.knowledge>.comments>.comment>.info {
-    color: #888888;
-    font-size: 0.8em;
-    margin-top: 5px;
-}
-
-.knowledge>.comments>.comment>.info>.actions>.save,.knowledge>.comments>.comment>.info>.actions>.cancel {
-    display: none;
-}
-
-.knowledge>.comments>.comment>.content>.content-textarea {
-    display: none;
-    height: 80px;
-}
-
 .knowledge>.publication {
     border-top: 1px solid #333333;
     padding-top: 15px;

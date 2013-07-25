@@ -1,11 +1,14 @@
 package controllers;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import models.Comment;
 import models.Knowledge;
 import models.User;
-import play.data.validation.Required;
+import play.mvc.Router;
+import play.mvc.Router.ActionDefinition;
 
 public class CommentController extends SuperController {
 
@@ -18,7 +21,12 @@ public class CommentController extends SuperController {
 		KnowledgeController.showKnowledge(knowledgeId);
 	}
 
-	public static void saveComment(Long commentId, Long knowledgeId, @Required Long userId, String content) {
+	public static void saveComment(Long commentId, Long knowledgeId, String content) {
+		if (!session.contains("user.id")) {
+			KnowledgeController.showKnowledge(knowledgeId);
+		}
+
+		/* Parameters validation */
 		validation.required(content).message("error.field.required");
 
 		if (validation.hasErrors()) {
@@ -26,14 +34,34 @@ public class CommentController extends SuperController {
 			KnowledgeController.showKnowledge(knowledgeId);
 		}
 
-		/* Comment creation */
-		Comment comment = (commentId != null) ? Comment.<Comment> findById(commentId) : new Comment();
-		comment.user = User.findById(userId);
-		comment.knowledge = Knowledge.findById(knowledgeId);
-		comment.content = content;
-		comment.createdDate = (commentId != null) ? comment.createdDate : Calendar.getInstance().getTime();
-		comment.save();
+		/* Create or update a comment */
+		Comment comment = null;
+		Long userId = Long.parseLong(session.get("user.id"));
+		if (commentId == null) {
+			comment = new Comment();
+			comment.user = User.findById(userId);
+			comment.knowledge = Knowledge.findById(knowledgeId);
+			comment.content = content;
+			comment.createdDate = Calendar.getInstance().getTime();
+			comment.save();
+		} else {
+			comment = Comment.findById(commentId);
 
-		KnowledgeController.showKnowledge(knowledgeId);
+			if (comment == null || comment.user.id != userId) {
+				KnowledgeController.showKnowledge(knowledgeId);
+			}
+
+			comment.content = content;
+			comment.save();
+		}
+
+		/* Add anchor for redirection */
+		Map<String, Object> args = new HashMap<>();
+		args.put("knowledgeId", comment.knowledge.id);
+
+		ActionDefinition action = Router.reverse("KnowledgeController.showKnowledge", args);
+		action.addRef(Long.toString(comment.id));
+
+		redirect(action.url);
 	}
 }

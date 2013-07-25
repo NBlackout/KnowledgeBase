@@ -111,6 +111,10 @@ public class KnowledgeController extends SuperController {
 	}
 
 	public static void showKnowledge(Long knowledgeId) {
+		if (knowledgeId == null) {
+			Application.index();
+		}
+
 		Knowledge knowledge = Knowledge.findById(knowledgeId);
 		List<Comment> comments = Comment.find("byKnowledge", knowledge).fetch();
 

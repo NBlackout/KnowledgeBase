@@ -1,0 +1,31 @@
+<div id="${_comment.id}" class="comment" data-comment-id="${_comment.id}">
+    <div class="info">
+        <span>&{'knowledge.comment.info', _comment.user.username, _comment.createdDate.format()}</span>
+
+        <div class="actions pull-right">
+            #{if _comment.user.id == _userId}
+                <a class="edit" href="#" title="&{'tooltip.comment.edit'}"><i class="icon-edit"></i></a>
+                <a class="save" href="#" title="&{'tooltip.comment.save'}"><i class="icon-ok"></i></a>
+                <a class="cancel" href="#" title="&{'tooltip.comment.cancel'}"><i class="icon-cancel"></i></a>
+
+                <form class="save-comment pull-right" action="@{CommentController.saveComment()}" method="POST">
+                    <input name="commentId" type="hidden" value="${_comment.id}">
+                    <input name="content" type="hidden">
+                </form>
+            #{/if}
+
+            #{if _comment.user.id == _userId || _knowledge.user.id == _userId}
+                <a class="delete" href="#" title="&{'tooltip.comment.delete'}"><i class="icon-trash"></i></a>
+
+                <form class="delete-comment pull-right" action="@{CommentController.deleteComment()}" method="POST">
+                    <input name="commentId" type="hidden" value="${_comment.id}">
+                </form>
+            #{/if}
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="content-div">${_comment.content.raw().nl2br()}</div>
+        <textarea class="content-textarea span7">${_comment.content.raw()}</textarea>
+    </div>
+</div>

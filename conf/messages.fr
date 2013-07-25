@@ -33,14 +33,14 @@ button.edit=Modifier
 button.log.in=Connexion
 button.log.out=Déconnexion
 button.publish=Publier
-button.remove=Supprimer
+button.delete=Supprimer
 button.save=Enregistrer
 button.sign.up=Inscription
 
 # Tooltips
 tooltip.comment.cancel=Annuler
 tooltip.comment.edit=Éditer
-tooltip.comment.remove=Supprimer
+tooltip.comment.delete=Supprimer
 tooltip.comment.save=Enregistrer
 
 # Knowledges
@@ -74,8 +74,9 @@ mail.activation.body.activation=Vous devez valider votre compte avant de pouvoir
 mail.activation.body.link=Pour ce faire, veuillez cliquer sur le lien suivant :
 
 # Alerts
-alert.knowledge.remove.confirm=Êtes-vous sûr de vouloir supprimer cette connaissance ?
-alert.tag.remove.confirm=Êtes-vous sûr de vouloir supprimer ce tag ?
+alert.comment.delete.confirm=Êtes-vous sûr de vouloir supprimer ce commentaire ?
+alert.knowledge.delete.confirm=Êtes-vous sûr de vouloir supprimer cette connaissance ?
+alert.tag.delete.confirm=Êtes-vous sûr de vouloir supprimer ce tag ?
 
 # Errors
 error.field.required=Ce champs est requis

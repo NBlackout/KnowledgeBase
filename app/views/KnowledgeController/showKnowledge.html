@@ -12,7 +12,7 @@
         <div class="actions pull-right">
             #{if knowledge.user.id == userId}
                 <a class="btn btn-primary" href="@{KnowledgeController.editKnowledge(knowledge.id)}">&{'button.edit'}</a>
-                <a id="remove" class="btn btn-danger" href="@{KnowledgeController.removeKnowledge(knowledge.id)}">&{'button.remove'}</a>
+                <a id="remove" class="btn btn-danger" href="@{KnowledgeController.removeKnowledge(knowledge.id)}">&{'button.delete'}</a>
             #{/if}
             #{backButton /}
         </div>
@@ -33,39 +33,7 @@
 
         <div class="comments">
             #{list items:comments, as:'comment'}
-                <div class="comment">
-                    <div class="info">
-                        <span>&{'knowledge.comment.info', comment.user.username, comment.createdDate.format()}</span>
-
-                        <div class="actions pull-right">
-                            #{if comment.user.id == userId}
-                                <a class="edit" href="#" title="&{'tooltip.comment.edit'}"><i class="icon-edit"></i></a>
-                                <a class="save" href="#" title="&{'tooltip.comment.save'}"><i class="icon-ok"></i></a>
-                                <a class="cancel" href="#" title="&{'tooltip.comment.cancel'}"><i class="icon-cancel"></i></a>
-
-                                <form class="updateComment pull-right" action="@{CommentController.saveComment()}" method="POST">
-                                    <input name="commentId" type="hidden" value="${comment.id}">
-                                    <input name="knowledgeId" type="hidden" value="${knowledge.id}">
-                                    <input name="userId" type="hidden" value="${userId}">
-                                    <input name="content" type="hidden">
-                                </form>
-                            #{/if}
-
-                            #{if comment.user.id == userId || knowledge.user.id == userId}
-                                <a class="remove" href="#" title="&{'tooltip.comment.remove'}"><i class="icon-trash"></i></a>
-
-                                <form class="deleteComment pull-right" action="@{CommentController.deleteComment()}" method="POST">
-                                    <input name="commentId" type="hidden" value="${comment.id}">
-                                </form>
-                            #{/if}
-                        </div>
-                    </div>
-
-                    <div class="content">
-                        <div class="content-div">${comment.content.raw().nl2br()}</div>
-                        <textarea class="content-textarea span7">${comment.content.raw()}</textarea>
-                    </div>
-                </div>
+                #{comment userId:userId, knowledge:knowledge, comment:comment  /}
             #{/list}
         </div>
 
@@ -97,49 +65,7 @@
 <script type="text/javascript">
 	$(function() {
 		$('#remove').click(function() {
-			return confirm('&{"alert.knowledge.remove.confirm"}');
-		});
-
-		$('.comment .info .actions a').click(function() {
-			var action = $(this);
-
-			var actions = action.parent();
-			var edit = actions.find('.edit');
-			var save = actions.find('.save');
-			var cancel = actions.find('.cancel');
-
-			var comment = actions.parent().parent();
-
-			var content = comment.find('.content');
-			var contentDiv = comment.find('.content-div');
-			var contentTextarea = content.find('.content-textarea');
-
-			if (action.hasClass('edit')) {
-				// Update comment content
-				contentTextarea.show();
-				contentDiv.hide();
-
-				// Update comment actions
-				edit.hide();
-				save.show();
-				cancel.show();
-			} else if (action.hasClass('cancel')) {
-				// Update comment content
-				contentTextarea.hide();
-				contentDiv.show();
-
-				// Update comment actions
-				edit.show();
-				save.hide();
-				cancel.hide();
-			} else if (action.hasClass('save')) {
-				actions.find('.updateComment input[name="content"]').val(contentTextarea.val());
-				actions.find('.updateComment').submit();
-			} else if (action.hasClass('remove')) {
-				actions.find('.deleteComment').submit();
-			}
-
-			return false;
+			return confirm(messages['alert.knowledge.delete.confirm']);
 		});
 
 		$('#selectedTags .selectedTag').each(function(index, data) {
