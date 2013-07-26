@@ -38,9 +38,11 @@ $(function() {
 	buildSuggestion = function(tag) {
 		var name = $('<a>').attr('href', '#').text(tag.name);
 		name.click(function() {
-			buildTag(tag);
+			if (selectedTags.find('.selectedTag[data-tag-id="' + tag.id + '"]').size() == 0) {
+				buildTag(tag);
 
-			suggestions.empty().hide();
+				suggestions.empty().hide();
+			}
 
 			return false;
 		});
