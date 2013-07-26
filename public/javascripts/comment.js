@@ -67,8 +67,11 @@ $(function() {
 	var highlightComment = function() {
 		var commentId = window.location.hash.replace('#', '');
 
-		$('#' + commentId).effect('highlight', {
-			color: '#669966'
+		$('#' + commentId).animate({
+			backgroundColor: '#669966'
+		}, 500);
+		$('#' + commentId).animate({
+			backgroundColor: 'transparent'
 		}, 1500);
 	};
 
