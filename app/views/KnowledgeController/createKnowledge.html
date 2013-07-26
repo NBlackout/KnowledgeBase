@@ -8,7 +8,7 @@
 <fieldset>
     <legend>&{'title.knowledge.create'}</legend>
 
-    <form id="form" class="form-horizontal" action="@{KnowledgeController.saveKnowledge()}" method="POST">
+    <form class="form-horizontal save-knowledge" action="@{KnowledgeController.saveKnowledge()}" method="POST">
         <input name="userId" type="hidden" value="${userId}">
         <input name="tagIds" type="hidden">
 
@@ -33,11 +33,12 @@
         </div>
 
         <div class="control-group#{ifError 'tagIds'} error#{/ifError}">
-            <label class="control-label required" for="tag">&{'knowledge.tags'}</label>
+            <label class="control-label required" for="inputTag">&{'knowledge.tags'}</label>
             <div class="controls">
-                <div id="tags" class="input-xxlarge#{ifError 'tagIds'} error#{/ifError}">
-                    <input id="tag" class="input-xxlarge" type="text" placeholder="&{'knowledge.tags'}">
-                    <div id="suggestions"></div>
+                <div class="input-xxlarge tags#{ifError 'tagIds'} error#{/ifError}">
+                    <span class="selectedTags"></span>
+                    <input id="inputTag" class="input-xxlarge input-tag" type="text" placeholder="&{'knowledge.tags'}">
+                    <div class="suggestions"></div>
                 </div>
                 #{ifError 'tagIds'}
                     <span class="help-inline">#{error 'tagIds' /}</span>
@@ -53,105 +54,3 @@
         </div>
     </form>
 </fieldset>
-
-<script type="text/javascript">
-	$(function() {
-		var findTagsByNameLike = #{jsAction @TagController.findTagsByNameLike(':name') /}
-
-		var selectedTags = $('#tags');
-		var userTagInput = $('#tag');
-
-		var suggestions = $('#suggestions');
-
-		// Build a tag
-		var buildTag = function(tag) {
-			var removeTag = buildActionIcon('icon-remove');
-
-			var selectedTag = $('<span>').addClass('selectedTag').attr('title', tag.description).attr('data-tag-id', tag.id);
-			selectedTag.append(tag.name);
-			selectedTag.append(removeTag);
-
-			// Append selected tag
-			userTagInput.before(selectedTag);
-
-			removeTag.click(function() {
-				// Update user input
-				userTagInput.css('width', userTagInput.width() + selectedTag.width() + 10);
-				userTagInput.val('');
-				userTagInput.focus();
-
-				// Remove selected tag
-				selectedTag.remove();
-			});
-
-			// Update user input
-			userTagInput.css('width', userTagInput.width() - selectedTag.width() - 10);
-			userTagInput.val('');
-			userTagInput.focus();
-		}
-
-		// Build a suggestion
-		var buildSuggestion = function(tag) {
-			var name = $('<a>').attr('href', '#').text(tag.name);
-			name.click(function() {
-				buildTag(tag);
-
-				// Reinitialize suggestions
-				suggestions.empty().hide();
-
-				return false;
-			});
-
-			var suggestion = $('<span>').addClass('suggestion');
-			suggestion.append(name);
-
-			suggestions.append(suggestion);
-		};
-
-		// Add focused class on tags when user tag input is focused
-		userTagInput.focus(function() {
-			selectedTags.addClass('focused');
-		});
-
-		// Remove focused class on tags when user tag input is blured
-		userTagInput.blur(function() {
-			selectedTags.removeClass('focused');
-		});
-
-		// Reinitialize suggestions
-		userTagInput.keyup(function() {
-			suggestions.empty().hide();
-		});
-
-		// Handle a delayed key up event on user input and build suggestions
-		userTagInput.keyupDelay(function() {
-			var name = userTagInput.val();
-			if (name) {
-				$.getJSON(findTagsByNameLike({name : name}), function(tags) {
-					if (tags.length != 0) {
-						$.each(tags, function(index, tag) {
-							buildSuggestion(tag);
-						});
-
-						suggestions.show();
-					}
-				});
-			}
-		}, 500);
-
-		$('#form').submit(function() {
-			var tags = selectedTags.find('.selectedTag');
-			if (tags.length != 0) {
-				var tagIds = new Array();
-
-				$.each(tags, function(index, tag) {
-					tagIds.push($(tag).attr('data-tag-id'));
-				});
-
-				$('#form [name="tagIds"]').val(tagIds);
-			} else {
-				$('#form [name="tagIds"]').attr('disabled', 'disabled');
-			}
-		});
-	});
-</script>

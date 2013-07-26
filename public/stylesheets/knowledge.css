@@ -1,0 +1,41 @@
+.knowledge .actions {
+    line-height: 45px;
+}
+
+.knowledge .title {
+    font-size: 2em;
+    line-height: 45px;
+}
+
+.knowledge .subtitle {
+    border-bottom: 1px solid #333333;
+    color: #888888;
+    font-size: 0.85em;
+    padding-bottom: 15px;
+}
+
+.knowledge .subtitle #tags .selectedTag {
+    background-color: #E0EAF1;
+    border-bottom: 1px solid #B3CEE1;
+    border-right: 1px solid #B3CEE1;
+    color: #3E6D8E;
+    margin-right: 5px;
+}
+
+.knowledge .subtitle #tags .selectedTag a {
+    cursor: pointer;
+}
+
+.knowledge .description {
+    margin-top: 20px;
+    margin-left: 15px;
+}
+
+.knowledge .comments {
+    margin-top: 30px;
+}
+
+.knowledge .publication {
+    border-top: 1px solid #333333;
+    padding-top: 15px;
+}

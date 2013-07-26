@@ -1,0 +1,18 @@
+.suggestions {
+    background-color: white;
+    border: 1px solid black;
+    display: none;
+    position: absolute;
+    z-index: 1;
+    position: absolute;
+}
+
+.suggestions .suggestion {
+    float: left;
+    margin: 5px;
+    width: 200px;
+}
+
+.suggestions .suggestion:nth-child(3n+1) {
+    clear: both;
+}

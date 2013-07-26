@@ -68,7 +68,6 @@
 		var findTagsByNameLike = #{jsAction @TagController.findTagsByNameLike(':name') /}
 
 		var selectedTags = $('#tags');
-		var userTagInput = $('#tag');
 
 		var suggestions = $('#suggestions');
 
@@ -116,16 +115,6 @@
 
 			suggestions.append(suggestion);
 		};
-
-		// Add focused class on tags when user tag input is focused
-		userTagInput.focus(function() {
-			selectedTags.addClass('focused');
-		});
-
-		// Remove focused class on tags when user tag input is blured
-		userTagInput.blur(function() {
-			selectedTags.removeClass('focused');
-		});
 
 		// Reinitialize suggestions
 		userTagInput.keyup(function() {

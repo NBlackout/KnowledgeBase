@@ -4,7 +4,7 @@ $(function() {
 		Edit: 'write'
 	};
 
-	var toggleMode = function(comment, mode) {
+	toggleMode = function(comment, mode) {
 		var contentDiv = comment.find('.content-div');
 		var contentTextarea = comment.find('.content-textarea');
 
@@ -36,16 +36,27 @@ $(function() {
 		}
 	};
 
-	var saveComment = function(comment) {
+	saveComment = function(comment) {
 		comment.find('.actions .save-comment input[name="content"]').val(comment.find('.content-textarea').val());
 		comment.find('.actions .save-comment').submit();
-	};
+	}
 
-	var deleteComment = function(comment) {
+	deleteComment = function(comment) {
 		if (confirm(messages['alert.comment.delete.confirm'])) {
 			comment.find('.actions .delete-comment').submit();
 		}
-	};
+	}
+
+	highlightComment = function() {
+		var commentId = window.location.hash.replace('#', '');
+
+		$('#' + commentId).animate({
+			backgroundColor: '#669966'
+		}, 500);
+		$('#' + commentId).animate({
+			backgroundColor: 'transparent'
+		}, 1500);
+	}
 
 	$('.comment .actions a').click(function() {
 		var action = $(this);
@@ -63,17 +74,6 @@ $(function() {
 
 		return false;
 	});
-
-	var highlightComment = function() {
-		var commentId = window.location.hash.replace('#', '');
-
-		$('#' + commentId).animate({
-			backgroundColor: '#669966'
-		}, 500);
-		$('#' + commentId).animate({
-			backgroundColor: 'transparent'
-		}, 1500);
-	};
 
 	$(window).hashchange(function() {
 		highlightComment();

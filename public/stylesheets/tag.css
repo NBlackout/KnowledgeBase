@@ -1,0 +1,80 @@
+.tags {
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);
+    -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);
+    display: inline-block;
+    height: 30px;
+    padding: 0px 6px;
+    -webkit-transition: border 0.2s cubic-bezier(0, 0, 1, 1), box-shadow 0.2s cubic-bezier(0, 0, 1, 1);
+    -moz-transition: border 0.2s cubic-bezier(0, 0, 1, 1), box-shadow 0.2s cubic-bezier(0, 0, 1, 1);
+    -o-transition: border 0.2s cubic-bezier(0, 0, 1, 1), box-shadow 0.2s cubic-bezier(0, 0, 1, 1);
+    transition: border 0.2s cubic-bezier(0, 0, 1, 1), box-shadow 0.2s cubic-bezier(0, 0, 1, 1);
+    vertical-align: middle;
+}
+
+.tags.focused {
+    border: 1px solid rgba(82, 168, 236, 0.8);
+    -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075), 0px 0px 8px rgba(82, 168, 236, 0.6);
+    -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075), 0px 0px 8px rgba(82, 168, 236, 0.6);
+    -o-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075), 0px 0px 8px rgba(82, 168, 236, 0.6);
+    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075), 0px 0px 8px rgba(82, 168, 236, 0.6);
+}
+
+.tags.error {
+    border-color: #B94A48;
+    -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);
+    -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.tags.error.focused {
+    border-color: #953B39;
+    -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075), 0px 0px 6px #D59392;
+    -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075), 0px 0px 6px #D59392;
+    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075), 0px 0px 6px #D59392;
+}
+
+.tags .selectedTags {
+    float: left;
+    line-height: 30px;
+    vertical-align: middle;
+}
+
+.tags .selectedTag {
+    background-color: #E0EAF1;
+    border-bottom: 1px solid #B3CEE1;
+    border-right: 1px solid #B3CEE1;
+    color: #3E6D8E;
+    cursor: help;
+    margin-right: 5px;
+}
+
+.tags .selectedTag a {
+    cursor: pointer;
+}
+
+.tags .input-tag,.tags .input-tag:focus, .tags.error .input-tag,.tags.error .input-tag:focus {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    height: 30px;
+    padding: 0px;
+    vertical-align: middle;
+}
+
+.tag .actions {
+    line-height: 45px;
+}
+
+.tag .name {
+    font-size: 1.4em;
+    line-height: 45px;
+}
+
+.tag .description {
+    font-style: italic;
+    text-indent: 4em;
+    text-align: justify;
+}
