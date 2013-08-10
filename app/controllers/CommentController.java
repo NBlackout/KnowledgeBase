@@ -46,7 +46,6 @@ public class CommentController extends SuperController {
 			comment.save();
 		} else {
 			comment = Comment.findById(commentId);
-
 			if (comment == null || comment.user.id != userId) {
 				KnowledgeController.showKnowledge(knowledgeId);
 			}

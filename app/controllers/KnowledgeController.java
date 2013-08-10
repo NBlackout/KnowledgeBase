@@ -65,6 +65,7 @@ public class KnowledgeController extends SuperController {
 
 		response.setContentTypeIfNotSet("text/csv");
 		response.setHeader("Content-Disposition", "attachment;filename=knowledges.csv");
+
 		renderBinary(new ByteArrayInputStream(builder.toString().getBytes()));
 	}
 

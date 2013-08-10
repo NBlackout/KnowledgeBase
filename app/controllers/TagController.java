@@ -3,12 +3,13 @@ package controllers;
 import java.util.List;
 
 import models.Tag;
-import play.Play;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class TagController extends SuperController {
+
+	private static final int MAX_SIZE = 6;
 
 	public static void createTag() {
 		render();
@@ -29,8 +30,7 @@ public class TagController extends SuperController {
 	}
 
 	public static void findTagsByNameLike(String name) {
-		Integer maxSize = Integer.parseInt(Play.configuration.getProperty("json.suggestions.max.size"));
-		List<Tag> tags = Tag.find("name like ? order by name asc", "%" + name + "%").<Tag> fetch(maxSize);
+		List<Tag> tags = Tag.find("name like ? order by name asc", "%" + name + "%").<Tag> fetch(MAX_SIZE);
 
 		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 		renderJSON(gson.toJson(tags));
