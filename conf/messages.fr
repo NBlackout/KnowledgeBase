@@ -1,6 +1,6 @@
 # Application
 application.name=KnowledgeBase
-application.welcome=Bienvenue %s
+application.welcome=Bienvenu %s
 
 # Titles
 title.home=Accueil
